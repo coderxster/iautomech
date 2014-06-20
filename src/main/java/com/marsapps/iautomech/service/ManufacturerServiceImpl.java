@@ -33,4 +33,9 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 	public Manufacturer findById(Long id) {
 		return manufacturerDAO.findById(id);
 	}
+	
+	@Transactional
+	public List<Manufacturer> findLike(Manufacturer manuf) {
+		return manufacturerDAO.findLike(manuf);
+	}
 }

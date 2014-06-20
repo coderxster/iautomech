@@ -1,0 +1,11 @@
+create table part(
+	part_id BIGINT not null auto_increment,
+	manufacturer_id BIGINT not null,
+	name varchar(30) not null,
+	sku varchar(80),
+	modified_date date,
+	primary key (part_id),
+	index manuf_idx (manufacturer_id),
+	foreign key(manufacturer_id) 
+		references manufacturer(manufacturer_id) on delete cascade
+);

@@ -12,20 +12,23 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 
 @Entity
 @Table(name = "manufacturer")
+//@NamedQueries(value = { @NamedQuery(name = "findLike", query = "from Manufacturer where lower(name) like lower(:name) and ") })
 public class Manufacturer {
 
 	@Id
 	@GeneratedValue
-	@Column(name="manufacturer_id")
+	@Column(name = "manufacturer_id")
 	private Long id;
 
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="manufacturer_id")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "manufacturer_id")
 	private Set<Part> parts;
-	
+
 	@Column
 	private String name;
 
@@ -67,11 +70,11 @@ public class Manufacturer {
 		this.contactNumber = contactNumber;
 	}
 
-//	@Override
-//	public String toString() {
-//		return getId() + "|" + getName() + "|" + getContactName() + "|"
-//				+ getContactNumber();
-//	}
+	// @Override
+	// public String toString() {
+	// return getId() + "|" + getName() + "|" + getContactName() + "|"
+	// + getContactNumber();
+	// }
 
 	@Override
 	public boolean equals(Object obj) {

@@ -67,4 +67,27 @@ public class ManufacturerServiceImplTest {
 		assertEquals(fetchedManuf, manuf);
 	}
 
+	@Test
+	public void testFindManufacturer() {
+		Manufacturer manufLike = new Manufacturer();
+		manufLike.setName("wal");
+		manufLike.setContactName("arcel");
+		
+		Manufacturer manuf1 = new Manufacturer();
+		manuf1.setName("Walbro");
+		manuf1.setContactName("Marcelo");
+		
+		Manufacturer manuf2 = new Manufacturer();
+		manuf2.setName("MarsWalbro");
+		manuf2.setContactName("Carcelis");
+		
+		long id1 = service.addManufacturer(manuf1);
+		long id2 = service.addManufacturer(manuf2);		
+		
+		System.err.println(id1);
+		System.err.println(id2);
+		
+		List<Manufacturer> list = service.findLike(manufLike);
+		assertEquals(2, list.size());
+	}
 }
