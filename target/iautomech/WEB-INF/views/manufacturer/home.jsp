@@ -13,8 +13,8 @@
 
 <body>
 	<div class="pageHeading">
-<%-- 		<c:import url="../header.jsp" /> --%>
-iAutoMech
+		<%-- 		<c:import url="../header.jsp" /> --%>
+		iAutoMech
 	</div>
 
 	<div class="menuAndContent">
@@ -24,17 +24,26 @@ iAutoMech
 
 		<div class="content">
 			Manufacturer<br /> Search Manufacturers by specifying below details.
-			<form:form method="POST" commandName="manufacturer" action="search.html">
-				<form:label path="name" for="name"  />
-				<form:input path="name" />
-
-				<form:label path="contactName" for="contactName" />
-				<form:input path="contactName" />
-
-				<form:label path="contactNumber" for="contactNumber" />
-				<form:input path="contactNumber" />
-
-				<form:button>Search</form:button>
+			<form:form method="POST" commandName="manufacturer"
+				action="search.html">
+				<table>
+					<tr>
+						<td><form:label path="name" for="name">Name:</form:label></td>
+						<td><form:input path="name" /></td>
+					</tr>
+					<tr>
+						<td><form:label path="contactName" for="contactName" >Contact Name:</form:label></td>
+						<td><form:input path="contactName" /></td>
+					</tr>
+					<tr>
+						<td><form:label path="contactNumber" for="contactNumber" >Contact Number:</form:label></td>
+						<td><form:input path="contactNumber" /></td>
+					</tr>
+					<tr>
+						<td><form:button id="search" name="search">Search</form:button></td>
+						<td><form:button id="create" name="create">Create</form:button></td>
+					</tr>
+				</table>
 			</form:form>
 
 			<c:if test="${manufacturerList ne null}">
@@ -65,8 +74,8 @@ iAutoMech
 	</div>
 
 	<div class="footer">
-<%-- 		<c:import url="footer.jsp" /> --%>
-FOOTER
+		<%-- 		<c:import url="footer.jsp" /> --%>
+		FOOTER
 	</div>
 </body>
 </html>
