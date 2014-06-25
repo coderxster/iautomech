@@ -3,16 +3,16 @@
 
 	<table>
 		<tr>
-			<td><a href="../index.html">Home</a></td>
+			<td><a href="/index.html">Home</a></td>
 		</tr>
 		<tr>
-			<td><a href="home.html">Manufacturer Home</a></td>
+			<td><a href="/home">Manufacturer Home</a></td>
 		</tr>
 		<tr>
-			<td><a href="home.html">Search</a></td>
+			<td><a href="/search.html">Search</a></td>
 		</tr>
 		<tr>
-			<td><a href="reports.html">Reports</a></td>
+			<td><a href="createForm.html">Create</a></td>
 		</tr>
 		<tr>
 			<td><a href="home.html">Orders</a></td>

@@ -23,7 +23,7 @@
 		</div>
 
 		<div class="content">
-			Manufacturer<br /> Search Manufacturers by specifying below details.
+			Manufacturer<br /> Search Manufacturers by specifying below details.<br/><br/>
 			<form:form method="POST" commandName="manufacturer"
 				action="search.html">
 				<table>
