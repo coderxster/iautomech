@@ -10,4 +10,5 @@ public interface ManufacturerService {
 	public Long addManufacturer(Manufacturer manufacturer);
 	public Manufacturer findById(Long id);
 	public List<Manufacturer> findLike(Manufacturer manuf);
+	public void removeManufacturer(Long id);
 }

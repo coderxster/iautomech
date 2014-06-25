@@ -12,5 +12,6 @@ public interface ManufacturerDAO {
 	public Manufacturer findById(Long id);
 	public void deleteManufacturer(Long id) throws RecordNotFoundException;
 	public List<Manufacturer> findLike(Manufacturer manuf);
+	public void remove(Long id);
 	
 }

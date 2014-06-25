@@ -67,4 +67,9 @@ public class ManufacturerDAOImpl implements ManufacturerDAO {
 				
 		return query.list();
 	}
+	
+	public void remove(Long id) {
+		Session session = getCurrentSession();
+		session.delete(session.load(Manufacturer.class,id));
+	}
 }

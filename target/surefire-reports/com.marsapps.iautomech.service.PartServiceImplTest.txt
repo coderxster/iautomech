@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.marsapps.iautomech.service.PartServiceImplTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.044 sec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.951 sec

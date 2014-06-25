@@ -68,6 +68,21 @@ public class ManufacturerServiceImplTest {
 	}
 
 	@Test
+	public void removeManufacturer() {
+		Manufacturer manuf1 = new Manufacturer();
+		manuf1.setName("Walbro");
+		manuf1.setContactName("Marcelo");
+		
+		long id = service.addManufacturer(manuf1);
+		assertTrue(id > 1);
+		
+		service.removeManufacturer(id);
+		
+		Manufacturer manuf2 = service.findById(id);
+		assertNull(manuf2);
+	}
+	
+	@Test
 	public void testFindManufacturer() {
 		Manufacturer manufLike = new Manufacturer();
 		manufLike.setName("wal");

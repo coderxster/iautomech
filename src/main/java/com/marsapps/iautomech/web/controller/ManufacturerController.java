@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -51,6 +52,14 @@ public class ManufacturerController {
 		return "manufacturer/listManufacturers";
 	}
 
+	@RequestMapping("/delete/{id}")
+	public String delete(@PathVariable("id") String id, ModelMap model) {
+		service.removeManufacturer(Long.parseLong(id));
+		List<Manufacturer> list = service.getAllManufacturers();
+		model.put("manufacturerList", list);	
+		return "manufacturer/listManufacturers";
+	}
+	
 	@RequestMapping(value = "/search.html", method = RequestMethod.POST)
 	public String search(@ModelAttribute Manufacturer manuf, ModelMap model) {
 		List<Manufacturer> list = service.findLike(manuf);
