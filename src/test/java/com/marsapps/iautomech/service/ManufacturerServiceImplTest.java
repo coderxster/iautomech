@@ -83,11 +83,7 @@ public class ManufacturerServiceImplTest {
 	}
 	
 	@Test
-	public void testFindManufacturer() {
-		Manufacturer manufLike = new Manufacturer();
-		manufLike.setName("wal");
-		manufLike.setContactName("arcel");
-		
+	public void testFindManufacturer() {	
 		Manufacturer manuf1 = new Manufacturer();
 		manuf1.setName("Walbro");
 		manuf1.setContactName("Marcelo");
@@ -101,6 +97,10 @@ public class ManufacturerServiceImplTest {
 		
 		System.err.println(id1);
 		System.err.println(id2);
+		
+		Manufacturer manufLike = new Manufacturer();
+		manufLike.setName("wal");
+		manufLike.setContactName("arcel");
 		
 		List<Manufacturer> list = service.findLike(manufLike);
 		assertEquals(2, list.size());

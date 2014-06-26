@@ -3,18 +3,18 @@
 
 	<table>
 		<tr>
-			<td><a href="/index.html">Home</a></td>
+			<td><a href="/iautomech">Home</a></td>
 		</tr>
 		<tr>
-			<td><a href="/home">Manufacturer Home</a></td>
+			<td><a href="home.html">Manufacturer Home</a></td>
 		</tr>
 		<tr>
-			<td><a href="/search.html">Search</a></td>
+			<td><a href="searchForm.html">Search</a></td>
 		</tr>
 		<tr>
 			<td><a href="createForm.html">Create</a></td>
 		</tr>
 		<tr>
-			<td><a href="home.html">Orders</a></td>
-		</tr>
+			<td><a href="listAll.html">List All</a></td>
+		</tr>		
 	</table>

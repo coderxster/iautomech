@@ -60,18 +60,28 @@ public class ManufacturerController {
 		return "manufacturer/listManufacturers";
 	}
 	
+	@RequestMapping(value = "/searchForm.html", method = RequestMethod.GET)
+	public String showSearchForm(ModelMap model) {
+		model.put("manufacturer", new Manufacturer());
+		return "manufacturer/searchManufacturer";
+	}
+	
 	@RequestMapping(value = "/search.html", method = RequestMethod.POST)
-	public String search(@ModelAttribute Manufacturer manuf, ModelMap model) {
+	public String search(@ModelAttribute("manufacturer") Manufacturer manuf, ModelMap model, BindingResult result) {
+		if(result.hasErrors())
+			throw new RuntimeException();
+		
 		List<Manufacturer> list = service.findLike(manuf);
+		System.err.println("LIST =========>>>>> " + list);
 		model.put("manufacturerList", list);
-		return "manufacturer/home";
+		return "manufacturer/searchManufacturer";
 	}
 
 	@RequestMapping("/listAll.html")
 	public String listManufacturers(Model model, HttpSession session) {
 		List<Manufacturer> list = service.getAllManufacturers();
-		session.setAttribute("manufList", list);
-		return "manufacturer/home";
+		session.setAttribute("manufacturerList", list);
+		return "manufacturer/listManufacturers";
 	}
 
 }

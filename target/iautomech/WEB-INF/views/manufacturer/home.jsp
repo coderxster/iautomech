@@ -23,47 +23,8 @@
 		</div>
 
 		<div class="content">
-			Manufacturer<br /> Search Manufacturers by specifying below details.<br/><br/>
-			<form:form method="POST" commandName="manufacturer"
-				action="search.html">
-				<table>
-					<tr>
-						<td><form:label path="name" for="name">Name:</form:label></td>
-						<td><form:input path="name" /></td>
-					</tr>
-					<tr>
-						<td><form:label path="contactName" for="contactName" >Contact Name:</form:label></td>
-						<td><form:input path="contactName" /></td>
-					</tr>
-					<tr>
-						<td><form:label path="contactNumber" for="contactNumber" >Contact Number:</form:label></td>
-						<td><form:input path="contactNumber" /></td>
-					</tr>
-					<tr>
-						<td><form:button id="search" name="search">Search</form:button></td>
-						<td><form:button id="create" name="create">Create</form:button></td>
-					</tr>
-				</table>
-			</form:form>
+			Manufacturer<br /> Welcome to the Manufacturers section!<br/><br/>
 
-			<c:if test="${manufacturerList ne null}">
-				<table>
-					<tr>
-						<td>Name</td>
-						<td>ContactName</td>
-						<td>ContactNumber</td>
-					</tr>
-
-					<c:forEach var="manuf" items="${manufacturerList}">
-						<tr>
-							<td><c:out value="${manuf.name}" /></td>
-							<td><c:out value="${manuf.contactName}" /></td>
-							<td><c:out value="${manuf.contactNumber}" /></td>
-						</tr>
-					</c:forEach>
-
-				</table>
-			</c:if>
 
 		</div>
 

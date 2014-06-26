@@ -73,7 +73,7 @@ public class ManufacturerControllerTest {
 
 		mockMvc.perform(post("/manufacturer/listAll.html"))
 				.andExpect(status().isOk())
-				.andExpect(view().name("manufacturer/home"));
+				.andExpect(view().name("manufacturer/listManufacturers"));
 //				.andExpect(model().attribute("manufList", ));
 
 	}
