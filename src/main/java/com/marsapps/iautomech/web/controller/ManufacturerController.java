@@ -125,4 +125,12 @@ public class ManufacturerController {
 		
 		return "manufacturer/searchManufacturer";
 	}
+	
+	@RequestMapping("/delete.html")
+	public String deleteManufacturers(@RequestParam("selectedIds") String[] ids) {
+		for(String id : ids)
+			System.err.println("ID ++++++> " + id);
+		
+		return "manufacturer/confirmDelete";		
+	}
 }

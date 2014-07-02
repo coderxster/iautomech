@@ -24,6 +24,8 @@
 		</div>
 
 		<div class="content">
+			<h1>Search Manufacturers</h1>
+			<p>Please enter your search criteria in the provided fields (where applicable).
 			<form:form method="POST" modelAttribute="manufacturer"
 				action="search.html">
 
@@ -46,29 +48,40 @@
 				</table>
 			</form:form>
 
+
 			<c:if test="${manufacturerList ne null}">
-				<table class="dataTable">
-					<tr>
-						<th></th>
-						<th>Id</th>
-						<th>Name</th>
-						<th>ContactName</th>
-						<th>ContactNumber</th>
-					</tr>
 
-					<c:forEach var="manuf" items="${manufacturerList}" varStatus="counter">
+				<form:form action="delete.html">
+					<table class="dataTable">
 						<tr>
-							<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><input type="checkbox" id="selectedIds"  /></td>
-							<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out value="${manuf.id}" /></td>
-							<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out value="${manuf.name}" /></td>
-							<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out value="${manuf.contactName}" /></td>
-							<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out value="${manuf.contactNumber}" /></td>
+							<th></th>
+							<th>Id</th>
+							<th>Name</th>
+							<th>ContactName</th>
+							<th>ContactNumber</th>
 						</tr>
-					</c:forEach>
 
-				</table>
-				<input type="submit" value="Delete" />
+						<c:forEach var="manuf" items="${manufacturerList}"
+							varStatus="counter">
+							<tr>
+								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}">
+									<input type="checkbox" id="selectedIds" value="${manuf.id}"/>
+								</td>
+								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+										value="${manuf.id}" /></td>
+								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+										value="${manuf.name}" /></td>
+								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+										value="${manuf.contactName}" /></td>
+								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+										value="${manuf.contactNumber}" /></td>
+							</tr>
+						</c:forEach>
 
+					</table>
+					<form:button name="delete">Delete</form:button>
+				</form:form>
+				
 				<table>
 					<tr>
 						<c:if test="${page gt 1}">
@@ -95,7 +108,7 @@
 							<td>&gt;</td>
 							<td>&nbsp;</td>
 							<td>&gt;&gt;</td>
-						</c:if>						
+						</c:if>
 					</tr>
 				</table>
 			</c:if>
