@@ -2,6 +2,7 @@ package com.marsapps.iautomech.service;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -83,6 +84,27 @@ public class ManufacturerServiceImplTest {
 	}
 
 	@Test
+	public void testFindByIds() {
+		
+		List<Long> ids = new ArrayList<Long>();
+		
+		for (int i = 0; i < 5; i++) {
+			Manufacturer manuf1 = new Manufacturer();
+			manuf1.setName("Walbro-" + i);
+			manuf1.setContactName("Marcelo-" + i);
+			manuf1.setContactNumber("555-" + i);
+
+			ids.add(service.addManufacturer(manuf1));
+		}
+		
+		List<Manufacturer> fetchedManufacturers = service.findByIds(ids);
+		
+		for(Manufacturer manuf : fetchedManufacturers) {
+			assertTrue(ids.contains(manuf.getId()));
+		}
+	}
+	
+	@Test
 	public void testFindManufacturer() {
 		Manufacturer manuf1 = new Manufacturer();
 		manuf1.setName("TmpWalbro");
@@ -113,7 +135,7 @@ public class ManufacturerServiceImplTest {
 	@Test
 	public void testPaging() {
 
-		for (int i = 0; i < 200; i++) {
+		for (int i = 0; i < 20; i++) {
 			Manufacturer manuf1 = new Manufacturer();
 			manuf1.setName("Walbro-" + i);
 			manuf1.setContactName("Marcelo-" + i);
@@ -126,13 +148,13 @@ public class ManufacturerServiceImplTest {
 		manufLike.setName("wal");
 		manufLike.setContactName("arcel");
 
-		int numRowsToShow = 20;
+		int numRowsToShow = 5;
 		int pageNum = 3;
 		
 		List<Manufacturer> list = service.findLike(manufLike, numRowsToShow, pageNum);
 
 		assertNotNull(list);
-		assertEquals(20, list.size());
+		assertEquals(5, list.size());
 		
 		int counter = (numRowsToShow * pageNum) - numRowsToShow;
 		for (int i = 0; i < list.size(); i++, counter++) {

@@ -8,8 +8,9 @@ import com.marsapps.iautomech.exception.RecordNotFoundException;
 public interface ManufacturerDAO {
 
 	public Long addManufacturer(Manufacturer manufacturer);
-	public List<Manufacturer> getAllManufacturers();
+	public List<Manufacturer> getAllManufacturers();	
 	public Manufacturer findById(Long id);
+	public List<Manufacturer> findByIds(List<Long> ids);
 	public void deleteManufacturer(Long id) throws RecordNotFoundException;
 	public List<Manufacturer> findLike(Manufacturer manuf);
 	public void remove(Long id);

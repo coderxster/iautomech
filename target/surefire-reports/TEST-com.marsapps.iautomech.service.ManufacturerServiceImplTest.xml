@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="18.412" errors="0" skipped="0" tests="5" name="com.marsapps.iautomech.service.ManufacturerServiceImplTest">
+<testsuite failures="0" time="6.432" errors="0" skipped="0" tests="6" name="com.marsapps.iautomech.service.ManufacturerServiceImplTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.6.0_34\jre\bin"/>
@@ -60,9 +60,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase time="4.664" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testGetAllManufacturers"/>
-  <testcase time="0.17" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testAddManufacturer"/>
-  <testcase time="0.166" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="removeManufacturer"/>
-  <testcase time="0.212" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindManufacturer"/>
-  <testcase time="13.2" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testPaging"/>
+  <testcase time="4.945" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testGetAllManufacturers"/>
+  <testcase time="0.165" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testAddManufacturer"/>
+  <testcase time="0.176" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="removeManufacturer"/>
+  <testcase time="0.272" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindByIds"/>
+  <testcase time="0.221" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindManufacturer"/>
+  <testcase time="0.653" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testPaging"/>
 </testsuite>

@@ -1,5 +1,6 @@
 package com.marsapps.iautomech.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,7 +77,7 @@ public class ManufacturerController {
 
 		List<Manufacturer> list = service.findLike(manuf, 20, 1);
 		model.put("manufacturerList", list);
-		
+
 		Long count = service.getManufacturerCount(manuf);
 
 		StringBuilder query = new StringBuilder();
@@ -85,7 +87,7 @@ public class ManufacturerController {
 		model.put("query", query.toString());
 		model.put("page", 1);
 		model.put("maxpage", ((long) count / 20) == 0 ? 1 : (long) count / 20);
-		
+
 		return "manufacturer/searchManufacturer";
 	}
 
@@ -95,25 +97,24 @@ public class ManufacturerController {
 		session.setAttribute("manufacturerList", list);
 		return "manufacturer/listManufacturers";
 	}
-	
+
 	@RequestMapping("/doPaging.html")
 	public String navigate(@RequestParam("name") String name,
 			@RequestParam("contactname") String contactName,
 			@RequestParam("contactnumber") String contactNumber,
-			@RequestParam("page") String page,
-			ModelMap model) {
+			@RequestParam("page") String page, ModelMap model) {
 
 		Manufacturer manuf = new Manufacturer();
 		manuf.setName(name);
 		manuf.setContactName(contactName);
 		manuf.setContactNumber(contactNumber);
-		
-		
-		List<Manufacturer> list = service.findLike(manuf, 20, Integer.parseInt(page));
+
+		List<Manufacturer> list = service.findLike(manuf, 20,
+				Integer.parseInt(page));
 		model.put("manufacturerList", list);
-		
+
 		Long count = service.getManufacturerCount(manuf);
-			
+
 		StringBuilder query = new StringBuilder();
 		query.append("name=" + manuf.getName());
 		query.append("&contactname=" + manuf.getContactName());
@@ -121,16 +122,40 @@ public class ManufacturerController {
 		model.put("query", query.toString());
 		model.put("page", page);
 		model.put("maxpage", ((long) count / 20) == 0 ? 1 : (long) count / 20);
-		
-		
+
 		return "manufacturer/searchManufacturer";
 	}
-	
+
 	@RequestMapping("/delete.html")
-	public String deleteManufacturers(@RequestParam("selectedIds") String[] ids) {
-		for(String id : ids)
-			System.err.println("ID ++++++> " + id);
-		
-		return "manufacturer/confirmDelete";		
+	public String deleteManufacturers(ModelMap model, HttpSession session,
+			@RequestParam("selectedIds") String[] ids) {
+		List<Long> idList = new ArrayList<Long>();
+
+		for (String id : ids)
+			idList.add(Long.parseLong(id));
+
+		List<Manufacturer> list = service.findByIds(idList);
+		session.setAttribute("manufacturersToDelete", list);
+
+		return "manufacturer/confirmDelete";
 	}
+
+	@RequestMapping("/deleteConfirmed.html")
+	public String deleteManufacturers(ModelMap model, HttpSession session) {
+		// delete by ids
+
+		// looks like this is null
+		List<Manufacturer> list = (List<Manufacturer>) session
+				.getAttribute("manufacturersToDelete");
+
+		for (Manufacturer manuf : list) {
+			// make this a bulk delete to avoid round trips to DB
+			service.removeManufacturer(manuf.getId());
+		}
+
+		model.put("message", "Manufacturers deleted successfully");
+
+		return "manufacturer/searchManufacturer";
+	}
+
 }

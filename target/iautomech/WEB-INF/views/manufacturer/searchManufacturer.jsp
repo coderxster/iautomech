@@ -24,11 +24,13 @@
 		</div>
 
 		<div class="content">
-			<h1>Search Manufacturers</h1>
-			<p>Please enter your search criteria in the provided fields (where applicable).
+			<h3>Search Manufacturers</h3>
+			<p>Please enter your search criteria in the provided fields (where applicable).</p>
+			
+			
 			<form:form method="POST" modelAttribute="manufacturer"
 				action="search.html">
-
+				<font style="color:red"></font><c:out value="${message}" /></font>
 				<table>
 					<tr>
 						<td><form:label path="name" for="name">Name</form:label></td>
@@ -51,7 +53,7 @@
 
 			<c:if test="${manufacturerList ne null}">
 
-				<form:form action="delete.html">
+				<form action="delete.html">
 					<table class="dataTable">
 						<tr>
 							<th></th>
@@ -65,7 +67,7 @@
 							varStatus="counter">
 							<tr>
 								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}">
-									<input type="checkbox" id="selectedIds" value="${manuf.id}"/>
+									<input type="checkbox" id="selectedIds" name="selectedIds" value="${manuf.id}"/>
 								</td>
 								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
 										value="${manuf.id}" /></td>
@@ -79,8 +81,8 @@
 						</c:forEach>
 
 					</table>
-					<form:button name="delete">Delete</form:button>
-				</form:form>
+					<input type="submit" value="Delete"/>
+				</form>
 				
 				<table>
 					<tr>

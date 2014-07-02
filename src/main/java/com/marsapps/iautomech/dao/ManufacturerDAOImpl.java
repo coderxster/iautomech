@@ -37,6 +37,11 @@ public class ManufacturerDAOImpl implements ManufacturerDAO {
 		return (Manufacturer) getCurrentSession().get(Manufacturer.class, id);
 	}
 
+	public List<Manufacturer> findByIds(List<Long> ids) {
+		return getCurrentSession().createCriteria(Manufacturer.class)
+				.add(Restrictions.in("id", ids)).list();
+	}
+
 	public void deleteManufacturer(Long id) throws RecordNotFoundException {
 		Manufacturer manuf = findById(id);
 
@@ -59,11 +64,9 @@ public class ManufacturerDAOImpl implements ManufacturerDAO {
 			int pageNum) {
 
 		/*** Can this be done with NamedQueries?? ***/
-		
-		Example example = Example.create(manuf)
-				.enableLike(MatchMode.ANYWHERE)
-				.ignoreCase()
-				.excludeZeroes();
+
+		Example example = Example.create(manuf).enableLike(MatchMode.ANYWHERE)
+				.ignoreCase().excludeZeroes();
 
 		Criteria criteria = getCurrentSession().createCriteria(
 				Manufacturer.class).add(example);
@@ -73,30 +76,30 @@ public class ManufacturerDAOImpl implements ManufacturerDAO {
 			criteria.setMaxResults(numRowsToShow);
 		}
 
-		
-/********************** Another way of doing the above is with Restrictions ************************/
-//		Criteria criteria = getCurrentSession().createCriteria(
-//				Manufacturer.class);
+		/********************** Another way of doing the above is with Restrictions ************************/
+		// Criteria criteria = getCurrentSession().createCriteria(
+		// Manufacturer.class);
 
-//		if (manuf.getName() != null && !manuf.getName().equals(""))
-//			criteria.add(Restrictions.ilike("name", manuf.getName(), MatchMode.ANYWHERE));
-//
-//		if (manuf.getContactName() != null
-//				&& !manuf.getContactName().equals(""))
-//			criteria.add(Restrictions.ilike("contactName",
-//					manuf.getContactName(), MatchMode.ANYWHERE));
-//
-//		if (manuf.getContactNumber() != null
-//				&& !manuf.getContactNumber().equals(""))
-//			criteria.add(Restrictions.ilike("contactNumber",
-//					manuf.getContactNumber(), MatchMode.ANYWHERE));
-//
-//		if (numRowsToShow > 0 && pageNum > 0) {
-//			criteria.setFirstResult((numRowsToShow * pageNum) - numRowsToShow);
-//			criteria.setMaxResults(numRowsToShow);
-//		}
-/***************************************************************************************************/
-		
+		// if (manuf.getName() != null && !manuf.getName().equals(""))
+		// criteria.add(Restrictions.ilike("name", manuf.getName(),
+		// MatchMode.ANYWHERE));
+		//
+		// if (manuf.getContactName() != null
+		// && !manuf.getContactName().equals(""))
+		// criteria.add(Restrictions.ilike("contactName",
+		// manuf.getContactName(), MatchMode.ANYWHERE));
+		//
+		// if (manuf.getContactNumber() != null
+		// && !manuf.getContactNumber().equals(""))
+		// criteria.add(Restrictions.ilike("contactNumber",
+		// manuf.getContactNumber(), MatchMode.ANYWHERE));
+		//
+		// if (numRowsToShow > 0 && pageNum > 0) {
+		// criteria.setFirstResult((numRowsToShow * pageNum) - numRowsToShow);
+		// criteria.setMaxResults(numRowsToShow);
+		// }
+		/***************************************************************************************************/
+
 		return criteria.list();
 	}
 
@@ -106,16 +109,13 @@ public class ManufacturerDAOImpl implements ManufacturerDAO {
 	}
 
 	public Long getManufacturerCount(Manufacturer manuf) {
-		Example example = Example.create(manuf)
-				.enableLike(MatchMode.ANYWHERE)
-				.ignoreCase()
-				.excludeZeroes();
+		Example example = Example.create(manuf).enableLike(MatchMode.ANYWHERE)
+				.ignoreCase().excludeZeroes();
 
-		Criteria criteria = getCurrentSession().createCriteria(
-				Manufacturer.class)
-				.add(example)
+		Criteria criteria = getCurrentSession()
+				.createCriteria(Manufacturer.class).add(example)
 				.setProjection(Projections.rowCount());
-		
+
 		return (Long) criteria.uniqueResult();
 	}
 }
