@@ -41,6 +41,16 @@
 					</c:forEach>
 
 				</table>
+
+				<table>
+					<tr>
+						<td><a href="doPaging.html?${query}&page=1">%lt;%lt;</a></td>
+						<td><a href="doPaging.html?${query}&page=${page - 1}">%lt;</a></td>
+						<td>%nbsp;</td>
+						<td><a href="doPaging.html?${query}&page=${page + 1}">%gt;</a></td>
+						<td><a href="doPaging.html?${query}&page=last">%gt;%gt;</a></td>						
+					</tr>
+				</table>
 			</c:if>
 		</div>
 

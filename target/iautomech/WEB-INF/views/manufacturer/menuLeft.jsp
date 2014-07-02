@@ -6,15 +6,15 @@
 			<td><a href="/iautomech">Home</a></td>
 		</tr>
 		<tr>
-			<td><a href="home.html">Manufacturer Home</a></td>
+			<td><a href="/iautomech/manufacturer/home.html">Manufacturer Home</a></td>
 		</tr>
 		<tr>
-			<td><a href="searchForm.html">Search</a></td>
+			<td><a href="/iautomech/manufacturer/searchForm.html">Search</a></td>
 		</tr>
 		<tr>
-			<td><a href="createForm.html">Create</a></td>
+			<td><a href="/iautomech/manufacturer/createForm.html">Create</a></td>
 		</tr>
 		<tr>
-			<td><a href="listAll.html">List All</a></td>
+			<td><a href="/iautomech/manufacturer/listAll.html">List All</a></td>
 		</tr>		
 	</table>

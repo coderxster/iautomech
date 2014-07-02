@@ -11,4 +11,6 @@ public interface ManufacturerService {
 	public Manufacturer findById(Long id);
 	public List<Manufacturer> findLike(Manufacturer manuf);
 	public void removeManufacturer(Long id);
+	public List<Manufacturer> findLike(Manufacturer manuf, int numRowsToShow, int pageNum);
+	public Long getManufacturerCount(Manufacturer manuf);
 }

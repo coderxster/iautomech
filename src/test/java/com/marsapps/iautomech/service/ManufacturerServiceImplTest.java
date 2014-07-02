@@ -53,12 +53,12 @@ public class ManufacturerServiceImplTest {
 		Long id = service.addManufacturer(manuf);
 		manuf.setId(id);
 
-//		manuf = null;
-//		manuf = new Manufacturer();
-//		manuf.setId(id);
-//		manuf.setName("test");
-//		manuf.setContactName("Me");
-//		manuf.setContactNumber("321");
+		// manuf = null;
+		// manuf = new Manufacturer();
+		// manuf.setId(id);
+		// manuf.setName("test");
+		// manuf.setContactName("Me");
+		// manuf.setContactNumber("321");
 
 		Manufacturer fetchedManuf = service.findById(id);
 		System.err.println("1....: " + manuf);
@@ -72,37 +72,74 @@ public class ManufacturerServiceImplTest {
 		Manufacturer manuf1 = new Manufacturer();
 		manuf1.setName("Walbro");
 		manuf1.setContactName("Marcelo");
-		
+
 		long id = service.addManufacturer(manuf1);
 		assertTrue(id > 1);
-		
+
 		service.removeManufacturer(id);
-		
+
 		Manufacturer manuf2 = service.findById(id);
 		assertNull(manuf2);
 	}
-	
+
 	@Test
-	public void testFindManufacturer() {	
+	public void testFindManufacturer() {
 		Manufacturer manuf1 = new Manufacturer();
-		manuf1.setName("Walbro");
+		manuf1.setName("TmpWalbro");
 		manuf1.setContactName("Marcelo");
-		
+
 		Manufacturer manuf2 = new Manufacturer();
-		manuf2.setName("MarsWalbro");
+		manuf2.setName("MarsTmpWalbro");
 		manuf2.setContactName("Carcelis");
-		
+
 		long id1 = service.addManufacturer(manuf1);
-		long id2 = service.addManufacturer(manuf2);		
+		long id2 = service.addManufacturer(manuf2);
+
+		Manufacturer manufTmp = service.findById(id1);
+		assertEquals(manuf1, manufTmp);
 		
 		System.err.println(id1);
 		System.err.println(id2);
-		
+
 		Manufacturer manufLike = new Manufacturer();
-		manufLike.setName("wal");
+		manufLike.setName("TmpW");
 		manufLike.setContactName("arcel");
+
 		
 		List<Manufacturer> list = service.findLike(manufLike);
 		assertEquals(2, list.size());
+	}
+
+	@Test
+	public void testPaging() {
+
+		for (int i = 0; i < 200; i++) {
+			Manufacturer manuf1 = new Manufacturer();
+			manuf1.setName("Walbro-" + i);
+			manuf1.setContactName("Marcelo-" + i);
+			manuf1.setContactNumber("555-" + i);
+
+			service.addManufacturer(manuf1);
+		}
+
+		Manufacturer manufLike = new Manufacturer();
+		manufLike.setName("wal");
+		manufLike.setContactName("arcel");
+
+		int numRowsToShow = 20;
+		int pageNum = 3;
+		
+		List<Manufacturer> list = service.findLike(manufLike, numRowsToShow, pageNum);
+
+		assertNotNull(list);
+		assertEquals(20, list.size());
+		
+		int counter = (numRowsToShow * pageNum) - numRowsToShow;
+		for (int i = 0; i < list.size(); i++, counter++) {
+			assertEquals("Walbro-" + counter, list.get(i).getName());
+			assertEquals("Marcelo-" + counter, list.get(i).getContactName());
+			assertEquals("555-" + counter, list.get(i).getContactNumber());
+		}
+
 	}
 }

@@ -15,32 +15,43 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 
 	@Autowired
 	private ManufacturerDAO manufacturerDAO;
-	
-	//Why is a transaction even for a read operation???? 
+
+	// Why is a transaction even for a read operation????
 	@Transactional
 	public List<Manufacturer> getAllManufacturers() {
-		//other business logic here
-		return manufacturerDAO.getAllManufacturers();		
+		// other business logic here
+		return manufacturerDAO.getAllManufacturers();
 	}
 
-	@Transactional(propagation=Propagation.REQUIRED)
+	@Transactional(propagation = Propagation.REQUIRED)
 	public Long addManufacturer(Manufacturer manufacturer) {
 		return manufacturerDAO.addManufacturer(manufacturer);
 	}
 
-	//Why is a transaction even for a read operation???? 
+	// Why is a transaction even for a read operation????
 	@Transactional
 	public Manufacturer findById(Long id) {
 		return manufacturerDAO.findById(id);
 	}
-	
+
 	@Transactional
 	public List<Manufacturer> findLike(Manufacturer manuf) {
 		return manufacturerDAO.findLike(manuf);
 	}
-	
+
 	@Transactional
 	public void removeManufacturer(Long id) {
-		manufacturerDAO.remove(id);		
+		manufacturerDAO.remove(id);
+	}
+
+	@Transactional
+	public List<Manufacturer> findLike(Manufacturer manuf,
+			int numRowsToShow, int pageNum) {
+		return manufacturerDAO.findLike(manuf, numRowsToShow, pageNum);
+	}
+	
+	@Transactional
+	public Long getManufacturerCount(Manufacturer manuf) {
+		return manufacturerDAO.getManufacturerCount(manuf);
 	}
 }

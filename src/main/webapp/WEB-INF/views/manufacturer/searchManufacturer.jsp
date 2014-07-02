@@ -45,29 +45,59 @@
 					</tr>
 				</table>
 			</form:form>
-						  
+
 			<c:if test="${manufacturerList ne null}">
 				<table class="dataTable">
 					<tr>
-						<td></td>
-						<td>Id</td>
-						<td>Name</td>
-						<td>ContactName</td>
-						<td>ContactNumber</td>
+						<th></th>
+						<th>Id</th>
+						<th>Name</th>
+						<th>ContactName</th>
+						<th>ContactNumber</th>
 					</tr>
 
-					<c:forEach var="manuf" items="${manufacturerList}">
+					<c:forEach var="manuf" items="${manufacturerList}" varStatus="counter">
 						<tr>
-							<td><input id="id" type="checkbox"/></td>
-							<td><c:out value="${manuf.id}" /></td>
-							<td><c:out value="${manuf.name}" /></td>
-							<td><c:out value="${manuf.contactName}" /></td>
-							<td><c:out value="${manuf.contactNumber}" /></td>
+							<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><input type="checkbox" id="selectedIds"  /></td>
+							<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out value="${manuf.id}" /></td>
+							<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out value="${manuf.name}" /></td>
+							<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out value="${manuf.contactName}" /></td>
+							<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out value="${manuf.contactNumber}" /></td>
 						</tr>
 					</c:forEach>
 
 				</table>
-				<input type="submit" value="Delete"/>
+				<input type="submit" value="Delete" />
+
+				<table>
+					<tr>
+						<c:if test="${page gt 1}">
+							<td><a href="doPaging.html?${query}&page=1">&lt;&lt;</a></td>
+							<td>&nbsp;</td>
+							<td><a href="doPaging.html?${query}&page=${page - 1}">&lt;</a></td>
+						</c:if>
+						<c:if test="${page eq 1}">
+							<td>&lt;&lt;</td>
+							<td>&nbsp;</td>
+							<td>&lt;</td>
+						</c:if>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>Page ${page} of ${maxpage}</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<c:if test="${page lt maxpage}">
+							<td><a href="doPaging.html?${query}&page=${page + 1}">&gt;</a></td>
+							<td>&nbsp;</td>
+							<td><a href="doPaging.html?${query}&page=${maxpage}">&gt;&gt;</a></td>
+						</c:if>
+						<c:if test="${page eq maxpage}">
+							<td>&gt;</td>
+							<td>&nbsp;</td>
+							<td>&gt;&gt;</td>
+						</c:if>						
+					</tr>
+				</table>
 			</c:if>
 		</div>
 
