@@ -10,7 +10,21 @@
 <link rel="StyleSheet" href="/iautomech/resources/css/styles.css"
 	type="text/css" />
 <title>Search Manufacturer</title>
+<link href="http://mottie.github.io/tablesorter/css/theme.default.css"
+	rel="stylesheet">
 
+<script type="text/javascript"
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
+
+<script>
+	$(function() {
+		$("#manufDataTable").tablesorter({
+			widgets : [ 'zebra' ]
+		});
+	});
+</script>
 </head>
 <body>
 	<div class="pageHeading">
@@ -25,16 +39,45 @@
 
 		<div class="content">
 			<h3>Search Manufacturers</h3>
-			<p>Please enter your search criteria in the provided fields (where applicable).</p>
-			
-			
+			<p>Please enter your search criteria in the provided fields
+				(where applicable).</p>
+
+
 			<form:form method="POST" modelAttribute="manufacturer"
 				action="search.html">
-				<font style="color:red"></font><c:out value="${message}" /></font>
+				<font style="color: red"><c:out value="${message}" /></font>
 				<table>
 					<tr>
 						<td><form:label path="name" for="name">Name</form:label></td>
 						<td><form:input id="name" path="name" /></td>
+						<td>&nbsp;</td>
+						<td><c:out value="Results per page" /></td>
+						<td><select name="rowsPerPage">
+								<c:if test="${rowsPerPage eq 5}">
+									<option value="5" selected="selected">5</option>
+								</c:if>
+								<c:if test="${rowsPerPage ne 5}">
+									<option value="5">5</option>
+								</c:if>
+								<c:if test="${rowsPerPage eq 10}">
+									<option value="10" selected="selected">10</option>
+								</c:if>
+								<c:if test="${rowsPerPage ne 10}">
+									<option value="10">10</option>
+								</c:if>
+								<c:if test="${rowsPerPage eq 20}">
+									<option value="20" selected="selected">20</option>
+								</c:if>
+								<c:if test="${rowsPerPage ne 20}">
+									<option value="20">20</option>
+								</c:if>
+								<c:if test="${rowsPerPage eq 50}">
+									<option value="50" selected="selected">50</option>
+								</c:if>
+								<c:if test="${rowsPerPage ne 50}">
+									<option value="50">50</option>
+								</c:if>
+						</select></td>
 					</tr>
 					<tr>
 						<td><form:label path="contactName" for="contactName">Contact Name</form:label></td>
@@ -54,20 +97,22 @@
 			<c:if test="${manufacturerList ne null}">
 
 				<form action="delete.html">
-					<table class="dataTable">
-						<tr>
-							<th></th>
-							<th>Id</th>
-							<th>Name</th>
-							<th>ContactName</th>
-							<th>ContactNumber</th>
-						</tr>
-
+					<table id="manufDataTable" class="dataTable">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Id</th>
+								<th>Name</th>
+								<th>ContactName</th>
+								<th>ContactNumber</th>
+							</tr>
+						</thead>
 						<c:forEach var="manuf" items="${manufacturerList}"
 							varStatus="counter">
 							<tr>
 								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}">
-									<input type="checkbox" id="selectedIds" name="selectedIds" value="${manuf.id}"/>
+									<input type="checkbox" id="selectedIds" name="selectedIds"
+									value="${manuf.id}" />
 								</td>
 								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
 										value="${manuf.id}" /></td>
@@ -81,9 +126,9 @@
 						</c:forEach>
 
 					</table>
-					<input type="submit" value="Delete"/>
+					<input type="submit" value="Delete" />
 				</form>
-				
+
 				<table>
 					<tr>
 						<c:if test="${page gt 1}">

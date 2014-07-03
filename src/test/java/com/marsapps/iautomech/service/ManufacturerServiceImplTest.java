@@ -137,16 +137,16 @@ public class ManufacturerServiceImplTest {
 
 		for (int i = 0; i < 20; i++) {
 			Manufacturer manuf1 = new Manufacturer();
-			manuf1.setName("Walbro-" + i);
-			manuf1.setContactName("Marcelo-" + i);
+			manuf1.setName("TestName-" + i);
+			manuf1.setContactName("TestContactName-" + i);
 			manuf1.setContactNumber("555-" + i);
 
 			service.addManufacturer(manuf1);
 		}
 
 		Manufacturer manufLike = new Manufacturer();
-		manufLike.setName("wal");
-		manufLike.setContactName("arcel");
+		manufLike.setName("tna");
+		manufLike.setContactName("tact");
 
 		int numRowsToShow = 5;
 		int pageNum = 3;
@@ -158,8 +158,8 @@ public class ManufacturerServiceImplTest {
 		
 		int counter = (numRowsToShow * pageNum) - numRowsToShow;
 		for (int i = 0; i < list.size(); i++, counter++) {
-			assertEquals("Walbro-" + counter, list.get(i).getName());
-			assertEquals("Marcelo-" + counter, list.get(i).getContactName());
+			assertEquals("TestName-" + counter, list.get(i).getName());
+			assertEquals("TestContactName-" + counter, list.get(i).getContactName());
 			assertEquals("555-" + counter, list.get(i).getContactNumber());
 		}
 

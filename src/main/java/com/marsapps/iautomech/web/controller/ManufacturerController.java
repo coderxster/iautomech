@@ -71,11 +71,15 @@ public class ManufacturerController {
 
 	@RequestMapping(value = "/search.html", method = RequestMethod.POST)
 	public String search(@ModelAttribute("manufacturer") Manufacturer manuf,
-			ModelMap model, BindingResult result) {
+			@RequestParam("rowsPerPage") String rowsPerPage, ModelMap model,
+			BindingResult result, HttpSession session) {
 		if (result.hasErrors())
 			throw new RuntimeException();
 
-		List<Manufacturer> list = service.findLike(manuf, 20, 1);
+		int rows = Integer.parseInt(rowsPerPage);
+		session.setAttribute("rowsPerPage", rows);
+		
+		List<Manufacturer> list = service.findLike(manuf, rows, 1);
 		model.put("manufacturerList", list);
 
 		Long count = service.getManufacturerCount(manuf);
@@ -86,7 +90,7 @@ public class ManufacturerController {
 		query.append("&contactnumber=" + manuf.getContactNumber());
 		model.put("query", query.toString());
 		model.put("page", 1);
-		model.put("maxpage", ((long) count / 20) == 0 ? 1 : (long) count / 20);
+		model.put("maxpage", ((long) count / rows) == 0 ? 1 : (long) count / rows);
 
 		return "manufacturer/searchManufacturer";
 	}
@@ -102,17 +106,20 @@ public class ManufacturerController {
 	public String navigate(@RequestParam("name") String name,
 			@RequestParam("contactname") String contactName,
 			@RequestParam("contactnumber") String contactNumber,
-			@RequestParam("page") String page, ModelMap model) {
+			@RequestParam("page") String page, ModelMap model, HttpSession session) {
 
+		int rows = (Integer) session.getAttribute("rowsPerPage");
+				
+		System.err.println(rows + " ========================++++++++++++++++++++++++,,,,<<<<<<<<<");
 		Manufacturer manuf = new Manufacturer();
 		manuf.setName(name);
 		manuf.setContactName(contactName);
 		manuf.setContactNumber(contactNumber);
 
-		List<Manufacturer> list = service.findLike(manuf, 20,
+		List<Manufacturer> list = service.findLike(manuf, rows,
 				Integer.parseInt(page));
 		model.put("manufacturerList", list);
-
+		System.err.println(list.size() + " ========================++++++++++++++++++++++++,,,,<<<<<<<<<");
 		Long count = service.getManufacturerCount(manuf);
 
 		StringBuilder query = new StringBuilder();
@@ -121,7 +128,7 @@ public class ManufacturerController {
 		query.append("&contactnumber=" + manuf.getContactNumber());
 		model.put("query", query.toString());
 		model.put("page", page);
-		model.put("maxpage", ((long) count / 20) == 0 ? 1 : (long) count / 20);
+		model.put("maxpage", ((long) count / rows) == 0 ? 1 : (long) count / rows);
 
 		return "manufacturer/searchManufacturer";
 	}
