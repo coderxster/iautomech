@@ -24,7 +24,7 @@
 	bottom: 0%;
 	height:5%;
 	/*60px;*/
-	position: relative;
+	position: absolute;
 	width: 98%;
 	padding-right: 10;
 }
@@ -56,7 +56,7 @@
 .content {
 	border: thin solid #D4D5D6;
 	background: #fefeef;
-	position: relative;
+	position: absolute;
 	left: 175px;
 	right: 155px;
 	top: 120px;	
