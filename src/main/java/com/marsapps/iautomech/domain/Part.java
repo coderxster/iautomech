@@ -1,6 +1,6 @@
 package com.marsapps.iautomech.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="part")
@@ -29,6 +31,7 @@ public class Part {
 	@Column
 	private String sku;
 	
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Column(name="modified_date")
 	private Date modifiedDate;
 

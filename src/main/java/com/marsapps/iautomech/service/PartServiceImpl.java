@@ -1,5 +1,7 @@
 package com.marsapps.iautomech.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,11 @@ public class PartServiceImpl implements PartService {
 	@Transactional
 	public Long addPart(Part part) {
 		return partDAO.addPart(part);
+	}
+	
+	@Transactional
+	public List<Part> findPartLike(Part partLike) {		
+		return partDAO.findPartLike(partLike);
 	}
 
 }

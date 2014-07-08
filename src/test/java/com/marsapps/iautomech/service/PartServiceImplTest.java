@@ -2,7 +2,8 @@ package com.marsapps.iautomech.service;
 
 import static org.junit.Assert.*;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,6 +59,46 @@ public class PartServiceImplTest {
 		assertEquals(part.getManufacturer(), fetchedPart.getManufacturer());
 		
 		assertEquals("Zama", fetchedPart.getManufacturer().getName());
+	}
+	
+	@Test
+	public void testFindPartLike() {
+		Manufacturer manuf = new Manufacturer();
+		manuf.setName("Zama");
+		manuf.setContactName("John Doe");
+		manuf.setContactNumber("555-123456");
+		
+		manufService.addManufacturer(manuf);
+		
+		Part part1 = new Part();
+		part1.setManufacturer(manuf);
+		part1.setModifiedDate(new Date(new java.util.Date().getTime()));
+		part1.setName("RandomNameHere");
+		part1.setSku("GeneratedSkuHere");
+		
+		Part part2 = new Part();
+		part2.setManufacturer(manuf);
+		part2.setModifiedDate(new Date(new java.util.Date().getTime()));
+		part2.setName("mNamer");
+		part2.setSku("mySkuRules");
+		
+		partService.addPart(part1);
+		partService.addPart(part2);
+		
+		//use a different part object with similar values
+		Part partLike = new Part();
+		partLike.setName("mname");
+		partLike.setSku("sku");
+		
+		List<Part> fetchedPartList = partService.findPartLike(partLike);
+		
+		assertEquals(2, fetchedPartList.size());
+		
+		for(Part part : fetchedPartList) {
+			assertEquals(manuf.getName(), part.getManufacturer().getName());
+		}
+		
+		
 	}
 
 }

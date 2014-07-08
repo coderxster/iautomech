@@ -8,8 +8,18 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc">
 
 	<!-- tell Spring we are using annotation driven features -->
-	<mvc:annotation-driven />
-	<import resource="spring/service-context.xml"/>
+	<mvc:annotation-driven conversion-service="conversionService" />
+
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<bean class="com.marsapps.iautomech.web.converter.ManufacturerConverter" />
+			</set>
+		</property>
+	</bean>
+
+	<import resource="spring/service-context.xml" />
 
 	<!-- tell Spring to scan the named package for Spring components -->
 	<context:component-scan base-package="com.marsapps.iautomech.web.controller" />
@@ -17,7 +27,8 @@
 	<!-- defines a handler to serve static resources -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	<!-- defines a ViewResolver for mapping logical view names to view files (jsp's) -->
+	<!-- defines a ViewResolver for mapping logical view names to view files 
+		(jsp's) -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />

@@ -18,9 +18,6 @@
 	</div>
 
 	<div class="menuAndContent">
-		<div class="menuLeft">
-			<c:import url="menuLeft.jsp" />
-		</div>
 
 		<div class="content">
 			Manufacturer<br /> Oops! An error was encountered.<br/><br/>
@@ -29,15 +26,8 @@
 
 		</div>
 
-
-		<div class="menuRight">
-			<c:import url="menuRight.jsp" />
-		</div>
 	</div>
 
-	<div class="footer">
-		<%-- 		<c:import url="footer.jsp" /> --%>
-		FOOTER
-	</div>
+
 </body>
 </html>

@@ -110,7 +110,6 @@ public class ManufacturerController {
 
 		int rows = (Integer) session.getAttribute("rowsPerPage");
 				
-		System.err.println(rows + " ========================++++++++++++++++++++++++,,,,<<<<<<<<<");
 		Manufacturer manuf = new Manufacturer();
 		manuf.setName(name);
 		manuf.setContactName(contactName);
@@ -119,7 +118,6 @@ public class ManufacturerController {
 		List<Manufacturer> list = service.findLike(manuf, rows,
 				Integer.parseInt(page));
 		model.put("manufacturerList", list);
-		System.err.println(list.size() + " ========================++++++++++++++++++++++++,,,,<<<<<<<<<");
 		Long count = service.getManufacturerCount(manuf);
 
 		StringBuilder query = new StringBuilder();
