@@ -99,6 +99,20 @@
 		</dependency>
 	</dependencies>
 
+	<scm>
+		<connection>scm:git:git://github.com/vitorsouza/EngeSoft.git</connection>
+		<developerConnection>scm:git:https://vitorsouza@github.com/vitorsouza/EngeSoft.git</developerConnection>
+		<url>https://github.com/vitorsouza/EngeSoft</url>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>Marcelo</id>
+			<name>Marcelo</name>
+			<email>marcelo.ortega@endeavourenergy.com.au</email>
+		</developer>
+	</developers>
+
 	<build>
 		<finalName>iautomech</finalName>
 		<plugins>
@@ -120,6 +134,43 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<providerImplementations>
+						<git>jgit</git>
+					</providerImplementations>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-jgit</artifactId>
+						<version>1.9</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.9</version>
+				<configuration>
+					<providerImplementations>
+						<git>jgit</git>
+					</providerImplementations>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-jgit</artifactId>
+						<version>1.9</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>

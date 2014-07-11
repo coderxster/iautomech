@@ -37,8 +37,9 @@
 					</tr>
 					<tr>
 						<td><form:label path="manufacturer" for="manufacturer">Manufacturer</form:label></td>
-						<td><form:select path="manufacturer.name">
-								<form:options items="${manufacturerList}" itemLabel="name" itemValue="id"/>
+						<td><form:select path="manufacturer">
+								<form:options items="${manufacturerList}" itemLabel="name"
+									itemValue="id" />
 							</form:select></td>
 					</tr>
 					<tr>

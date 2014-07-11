@@ -7,6 +7,11 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc">
 
+	<import resource="spring/service-context.xml" />
+
+	<!-- tell Spring to scan the named package for Spring components -->
+	<context:component-scan base-package="com.marsapps.iautomech.web.controller" />
+	
 	<!-- tell Spring we are using annotation driven features -->
 	<mvc:annotation-driven conversion-service="conversionService" />
 
@@ -14,15 +19,10 @@
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
 			<set>
-				<bean class="com.marsapps.iautomech.web.converter.ManufacturerCondverter" />
+				<bean class="com.marsapps.iautomech.web.converter.ManufacturerConverter" />
 			</set>
 		</property>
 	</bean>
-
-	<import resource="spring/service-context.xml" />
-
-	<!-- tell Spring to scan the named package for Spring components -->
-	<context:component-scan base-package="com.marsapps.iautomech.web.controller" />
 
 	<!-- defines a handler to serve static resources -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />

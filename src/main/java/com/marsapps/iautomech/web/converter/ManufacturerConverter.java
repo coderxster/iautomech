@@ -10,6 +10,10 @@ import com.marsapps.iautomech.service.ManufacturerService;
 @Component
 public class ManufacturerConverter implements Converter<String, Manufacturer> {
 	
+	public ManufacturerConverter() {
+		System.err.println("111 ++++++++++++++++ *******+++++++ WE GOT THIS --->>>>>>>> ");
+	}
+	
 	@Autowired
 	private ManufacturerService service;
 	

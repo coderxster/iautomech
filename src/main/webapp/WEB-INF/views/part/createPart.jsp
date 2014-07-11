@@ -38,8 +38,8 @@
 					<tr>
 						<td><form:label path="manufacturer" for="manufacturer">Manufacturer</form:label></td>
 						<td><form:select path="manufacturer">
-						<form:option value="${manufacturer.name}"></form:option>
-<%-- 								<form:options items="${manufacturerList}" itemLabel="name" itemValue="id"/> --%>
+								<form:options items="${manufacturerList}" itemLabel="name"
+									itemValue="id" />
 							</form:select></td>
 					</tr>
 					<tr>

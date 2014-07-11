@@ -8,6 +8,7 @@ import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,12 +33,13 @@ public class PartController {
 
 	@Autowired
 	private PartService partService;
-	
+
 	@Autowired
 	private ManufacturerService manufService;
 
-	@RequestMapping("/home")
+	@RequestMapping(value={"/","/home"})
 	public String showHomePage() {
+		System.err.println("MADE IT THIS FAR!!!!!");
 		return "part/home";
 	}
 
@@ -63,50 +65,72 @@ public class PartController {
 
 		System.err.println("?????????11  "
 				+ ((Part) model.get("part")).getModifiedDate());
-	
+
 		List<Part> list = partService.findPartLike(part);
 		model.put("partList", list);
 
 		return "part/searchPart";
 	}
 
-
 	@RequestMapping("/createForm.html")
 	public ModelAndView showCreatePartForm() {
 		ModelAndView mav = new ModelAndView("part/createPart");
-		
+
 		Part part = new Part();
 		mav.addObject("part", part);
 		mav.addObject("manufacturerList", manufService.getAllManufacturers());
-				
+
 		return mav;
 	}
-	
+
 	@RequestMapping("create")
 	public ModelAndView create(@ModelAttribute Part part, BindingResult result) {
-		
-		if(result.hasErrors())
+
+		if (result.hasErrors())
 			System.err.println("BINDING ERROR WERE ENCOUNTERED!!!!!!");
-		
+
 		ModelAndView mav = new ModelAndView("part/createPart");
-		
+
 		part.setModifiedDate(new Date());
 		Long id = partService.addPart(part);
-		
-		mav.addObject("", (id != null) ? "Part created successfully!" : "Part was not create. Please check with administrator");
-		
+
+		mav.addObject("", (id != null) ? "Part created successfully!"
+				: "Part was not create. Please check with administrator");
+
 		return mav;
 	}
-	
-	
-//	@InitBinder
-//	public void initBinder(WebDataBinder binder) {
-//		SimpleDateFormat dateFormat = new SimpleDateFormat(
-//				"dd/MM/yyyy hh:mm:ss");
-//
-//		ManufacturerPropertyEditor editor = new ManufacturerPropertyEditor();
-//		System.err.println("BINDER CALLED++++++++++++++++++++++++");
-//		binder.registerCustomEditor(Manufacturer.class, editor);
-//	}
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		System.err.println("++++++++++BINDER CALLED+++++++++++");
+		binder.registerCustomEditor(List.class, "manufacturer",
+				new CustomCollectionEditor(List.class) {
+
+					private Long id;
+
+					@Override
+					protected Object convertElement(Object element) {
+						System.err.println("************Conver Element called!!!**********");
+						
+						if (element instanceof String) {
+
+							// From the JSP 'element' will be a String
+							try {
+								id = Long.parseLong((String) element);
+							} catch (NumberFormatException e) {
+								System.out.println("Element was "
+										+ ((String) element));
+								e.printStackTrace();
+							}
+						} else if (element instanceof Long) {
+							// From the database 'element' will be a Long
+							id = (Long) element;
+						}
+
+						return id != null ? manufService.findById(id) : null;
+					}
+
+				});
+	}
 
 }
