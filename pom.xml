@@ -99,9 +99,9 @@
 	</dependencies>
 
 	<scm>
-		<connection>https://github.com/coderxster/iautomech.git</connection>
-		<developerConnection>https://github.com/coderxster/iautomech.git</developerConnection>
-		<url>https://github.com/coderxster/iautomech.git</url>
+		<connection>scm:git:https://github.com/coderxster/iautomech.git</connection>
+		<developerConnection>scm:git:https://github.com/coderxster/iautomech.git</developerConnection>
+		<url>scm:git:https://github.com/coderxster/iautomech.git</url>
 	  <tag>iautomech-0.1.0</tag>
   </scm>
 
