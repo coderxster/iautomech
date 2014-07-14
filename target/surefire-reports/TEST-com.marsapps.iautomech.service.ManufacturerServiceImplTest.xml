@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="5.85" errors="0" skipped="0" tests="6" name="com.marsapps.iautomech.service.ManufacturerServiceImplTest">
+<testsuite failures="0" time="6" errors="0" skipped="0" tests="6" name="com.marsapps.iautomech.service.ManufacturerServiceImplTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.6.0_34\jre\bin"/>
@@ -14,7 +14,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="D:\dev\projects\iautomech"/>
+    <property name="user.dir" value="D:\dev\projects\IAUTOM~1"/>
     <property name="java.runtime.version" value="1.6.0_34-b04"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.6.0_34\jre\lib\endorsed"/>
@@ -31,20 +31,19 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="50.0"/>
     <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
-    <property name="maven.repo.local" value="C:\Users\ortegm\.m2\repository"/>
     <property name="os.version" value="6.1"/>
     <property name="user.home" value="C:\Users\ortegm"/>
     <property name="user.timezone" value="Australia/Sydney"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
-    <property name="java.specification.version" value="1.6"/>
     <property name="file.encoding" value="Cp1252"/>
+    <property name="java.specification.version" value="1.6"/>
     <property name="user.name" value="ortegm"/>
     <property name="java.class.path" value="C:\work\dev\tools\apache-maven-3.2.1-bin\boot\plexus-classworlds-2.5.1.jar"/>
     <property name="org.slf4j.simpleLogger.defaultLogLevel" value="info"/>
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="32"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.6.0_34\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -D maven.repo.local=C:\Users\ortegm\.m2\repository -s C:\Users\ortegm\AppData\Local\Temp\release-settings4230241545079341899.xml -P artifactory clean verify"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher tomcat7:deploy"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -61,10 +60,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase time="4.368" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testGetAllManufacturers"/>
-  <testcase time="0.171" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testAddManufacturer"/>
-  <testcase time="0.172" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="removeManufacturer"/>
-  <testcase time="0.281" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindByIds"/>
-  <testcase time="0.218" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindManufacturer"/>
-  <testcase time="0.64" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testPaging"/>
+  <testcase time="4.526" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testGetAllManufacturers"/>
+  <testcase time="0.18" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testAddManufacturer"/>
+  <testcase time="0.17" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="removeManufacturer"/>
+  <testcase time="0.26" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindByIds"/>
+  <testcase time="0.21" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindManufacturer"/>
+  <testcase time="0.654" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testPaging"/>
 </testsuite>

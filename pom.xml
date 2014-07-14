@@ -99,29 +99,29 @@
 		</dependency>
 	</dependencies>
 
+	<scm>
+		<connection>scm:git:https://github.com/coderxster/iautomech.git</connection>
+		<developerConnection>scm:git:https://github.com/coderxster/iautomech.git</developerConnection>
+		<url>scm:git:https://github.com/coderxster/iautomech.git</url>
+		<tag>iautomech-0.1.0</tag>
+	</scm>
+	
 <!-- 	<scm> -->
-<!-- 		<connection>scm:git:https://github.com/coderxster/iautomech.git</connection> -->
-<!-- 		<developerConnection>scm:git:https://github.com/coderxster/iautomech.git</developerConnection> -->
-<!-- 		<url>scm:git:https://github.com/coderxster/iautomech.git</url> -->
+<!-- 		<connection>git@github.com:coderxster/iautomech.git</connection> -->
+<!-- 		<developerConnection>git@github.com:coderxster/iautomech.git</developerConnection> -->
+<!-- 		<url>git@github.com:coderxster/iautomech.git</url> -->
 <!-- 		<tag>iautomech-0.1.0</tag> -->
 <!-- 	</scm> -->
-	
-	<scm>
-		<connection>git@github.com:coderxster/iautomech.git</connection>
-		<developerConnection>git@github.com:coderxster/iautomech.git</developerConnection>
-		<url>git@github.com:coderxster/iautomech.git</url>
-<!-- 		<tag>iautomech-0.1.0</tag> -->
-	</scm>
 		
 	
 
-	<developers>
-		<developer>
-			<id>Marcelo</id>
-			<name>Marcelo</name>
-			<email>marcelo.ortega@endeavourenergy.com.au</email>
-		</developer>
-	</developers>
+<!-- 	<developers> -->
+<!-- 		<developer> -->
+<!-- 			<id>Marcelo</id> -->
+<!-- 			<name>Marcelo</name> -->
+<!-- 			<email>marcelo.ortega@endeavourenergy.com.au</email> -->
+<!-- 		</developer> -->
+<!-- 	</developers> -->
 
 	<build>
 		<finalName>iautomech</finalName>
@@ -165,23 +165,23 @@
 				</dependencies>
 			</plugin>
 
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
-<!-- 				<artifactId>maven-scm-plugin</artifactId> -->
-<!-- 				<version>1.9</version> -->
-<!-- 				<configuration> -->
-<!-- 					<providerImplementations> -->
-<!-- 						<git>jgit</git> -->
-<!-- 					</providerImplementations> -->
-<!-- 				</configuration> -->
-<!-- 				<dependencies> -->
-<!-- 					<dependency> -->
-<!-- 						<groupId>org.apache.maven.scm</groupId> -->
-<!-- 						<artifactId>maven-scm-provider-jgit</artifactId> -->
-<!-- 						<version>1.9</version> -->
-<!-- 					</dependency> -->
-<!-- 				</dependencies> -->
-<!-- 			</plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.9</version>
+				<configuration>
+					<providerImplementations>
+						<git>jgit</git>
+					</providerImplementations>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-jgit</artifactId>
+						<version>1.9</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 
 		</plugins>
 	</build>

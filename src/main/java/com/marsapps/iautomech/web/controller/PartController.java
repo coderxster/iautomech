@@ -19,6 +19,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.marsapps.iautomech.domain.Manufacturer;
@@ -83,12 +84,14 @@ public class PartController {
 		return mav;
 	}
 
-	@RequestMapping("create")
-	public ModelAndView create(@ModelAttribute Part part, BindingResult result) {
+	@RequestMapping("create.html")
+	public ModelAndView create(@ModelAttribute Part part, BindingResult result, @RequestParam String manufacturerId) {
 
+		System.err.println("IDDDD +++++++++++ " + manufacturerId);
 		if (result.hasErrors())
 			System.err.println("BINDING ERROR WERE ENCOUNTERED!!!!!!");
 
+		
 		ModelAndView mav = new ModelAndView("part/createPart");
 
 		part.setModifiedDate(new Date());

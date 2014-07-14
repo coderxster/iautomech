@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -24,7 +24,7 @@
 		</div>
 
 		<div class="content">
-			<form:form method="POST" modelAttribute="part" action="create">
+			<form:form method="POST" modelAttribute="part" action="create.html">
 				<form:errors path="*" cssClass="errorblock" element="div" />
 				<table>
 					<tr>
@@ -36,11 +36,13 @@
 						<td><form:input id="sku" path="sku" /></td>
 					</tr>
 					<tr>
-						<td><form:label path="manufacturer" for="manufacturer">Manufacturer</form:label></td>
-						<td><form:select path="manufacturer">
-								<form:options items="${manufacturerList}" itemLabel="name"
-									itemValue="id" />
-							</form:select></td>
+						<td><label>Manufacturer</label></td>
+						<td><select id="manufacturerId">
+								<option>-- Select a Manufacturer --</option>
+								<c:forEach items="${manufacturerList}" var="manuf">
+									<option label="${manuf.name}" value="${manuf.id}">${manuf.name}</option>
+								</c:forEach>
+						</select></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="Create" /></td>

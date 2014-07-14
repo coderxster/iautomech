@@ -26,12 +26,12 @@
 		<td>&nbsp;</td>
 		<td style="padding-left:33px"><a href="/iautomech/logout.html">Logout</a></td>
 		<td valign="bottom" align="right">
-			<form:form action="/iautomech/inventory/searchPartNo.html" method="POST"
-				commandName="part">
-				<form:label path="partNo" for="partNo">Part No.</form:label>
-				<form:input size="10" path="partNo" />
-				<form:button>Search</form:button>
-			</form:form>
+<%-- 			<form:form action="/iautomech/inventory/searchPartNo.html" method="POST" --%>
+<%-- 				commandName="part"> --%>
+<%-- 				<form:label path="partNo" for="partNo">Part No.</form:label> --%>
+<%-- 				<form:input size="10" path="partNo" /> --%>
+<%-- 				<form:button>Search</form:button> --%>
+<%-- 			</form:form> --%>
 		</td>
 	</tr>
 </table>
