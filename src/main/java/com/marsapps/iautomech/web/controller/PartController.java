@@ -43,7 +43,6 @@ public class PartController {
 
 	@RequestMapping(value = { "/", "/home" })
 	public String showHomePage() {
-		System.err.println("MADE IT THIS FAR!!!!!");
 		return "part/home";
 	}
 
@@ -85,9 +84,9 @@ public class PartController {
 		}
 
 		part.setModifiedDate(new Date());
-		partService.addPart(part);
+		Long id = partService.addPart(part);
 
-		model.addAttribute("message", "Part created successfully!");
+		model.addAttribute("message", "Part created successfully! It's ID for you reference is " + id);
 		// provide a new Part object - alternatively clear all fields
 		model.addAttribute("part", new Part());
 

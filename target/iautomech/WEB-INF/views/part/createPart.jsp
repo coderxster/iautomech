@@ -29,7 +29,7 @@
 				Part</p>
 			<form:form method="POST" modelAttribute="part" action="create.html">
 				<form:errors path="*" cssClass="errorblock" element="div" />
-				<font color="green"><c:out value="${message}" /></font>
+				<div class="successblock" style="visibility: ${message ne null ? 'visible' : 'hidden'}"><c:out value="${message}" /></div>
 				<table>
 					<tr>
 						<td><form:label path="name" for="name">
@@ -40,7 +40,8 @@
 								<option>-- Select a Manufacturer --</option>
 								<c:forEach items="${manufacturerList}" var="manuf">
 									<c:if test="${part.manufacturer.name eq manuf.name}">
-										<option selected="selected" label="${manuf.name}" value="${manuf.id}">${manuf.name}</option>
+										<option selected="selected" label="${manuf.name}"
+											value="${manuf.id}">${manuf.name}</option>
 									</c:if>
 									<option label="${manuf.name}" value="${manuf.id}">${manuf.name}</option>
 								</c:forEach>
@@ -57,7 +58,7 @@
 						<td><form:label path="modelNo" for="modelNo">Model No</form:label></td>
 						<td><form:input id="modelNo" path="modelNo" /></td>
 						<td><form:label path="quantity" for="quantity">Quantity</form:label></td>
-						<td><form:input id="quantity" path="quantity" /></td>
+						<td><form:input id="quantity" path="quantity" size="5"/></td>
 					</tr>
 					<tr>
 						<td><form:label path="description" for="description">Description</form:label></td>

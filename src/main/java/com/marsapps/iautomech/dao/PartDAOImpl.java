@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Conjunction;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,11 +31,16 @@ public class PartDAOImpl implements PartDAO {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
 				Part.class);
 
-		criteria.add(Example.create(partLike)
-				.enableLike(MatchMode.ANYWHERE)
+		criteria.add(Example.create(partLike).enableLike(MatchMode.ANYWHERE)
 				.ignoreCase()
-				.excludeZeroes());
-		
+				// we exclude the modifiedDate property given that 'like'
+				// doesn't really work with dates
+				.excludeProperty("modifiedDate").excludeZeroes());
+
+		if (partLike.getModifiedDate() != null)
+			criteria.add(Restrictions.eq("modifiedDate",
+					partLike.getModifiedDate()));
+
 		return criteria.list();
 	}
 }
