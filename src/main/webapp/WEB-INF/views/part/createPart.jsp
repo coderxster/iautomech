@@ -27,7 +27,6 @@
 			<h3>Create a Part</h3>
 			<p>Please enter the required information below to create a new
 				Part</p>
-			<br />
 			<form:form method="POST" modelAttribute="part" action="create.html">
 				<form:errors path="*" cssClass="errorblock" element="div" />
 				<font color="green"><c:out value="${message}" /></font>
@@ -40,6 +39,9 @@
 						<td><form:select id="manufacturer" path="manufacturer">
 								<option>-- Select a Manufacturer --</option>
 								<c:forEach items="${manufacturerList}" var="manuf">
+									<c:if test="${part.manufacturer.name eq manuf.name}">
+										<option selected="selected" label="${manuf.name}" value="${manuf.id}">${manuf.name}</option>
+									</c:if>
 									<option label="${manuf.name}" value="${manuf.id}">${manuf.name}</option>
 								</c:forEach>
 							</form:select></td>

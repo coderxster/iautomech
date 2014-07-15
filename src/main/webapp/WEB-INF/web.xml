@@ -25,8 +25,9 @@
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
 
+	<!-- error page required to alert of session timeout -->
 	<session-config>
-		<session-timeout>2</session-timeout>
+		<session-timeout>10</session-timeout>
 	</session-config>
 	
 	<welcome-file-list>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.592" errors="0" skipped="0" tests="3" name="com.marsapps.iautomech.web.controller.PartControllerTest">
+<testsuite failures="0" time="0.564" errors="0" skipped="0" tests="3" name="com.marsapps.iautomech.web.controller.PartControllerTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.6.0_34\jre\bin"/>
@@ -60,7 +60,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase time="0.335" classname="com.marsapps.iautomech.web.controller.PartControllerTest" name="testPartAttributeBinding"/>
-  <testcase time="0.122" classname="com.marsapps.iautomech.web.controller.PartControllerTest" name="testShowHomePage"/>
-  <testcase time="0.135" classname="com.marsapps.iautomech.web.controller.PartControllerTest" name="testSearchPartPage"/>
+  <testcase time="0.31" classname="com.marsapps.iautomech.web.controller.PartControllerTest" name="testPartAttributeBinding"/>
+  <testcase time="0.128" classname="com.marsapps.iautomech.web.controller.PartControllerTest" name="testShowHomePage"/>
+  <testcase time="0.126" classname="com.marsapps.iautomech.web.controller.PartControllerTest" name="testSearchPartPage"/>
 </testsuite>

@@ -41,7 +41,7 @@ public class PartController {
 	@Autowired
 	private ManufacturerService manufService;
 
-	@RequestMapping(value={"/","/home"})
+	@RequestMapping(value = { "/", "/home" })
 	public String showHomePage() {
 		System.err.println("MADE IT THIS FAR!!!!!");
 		return "part/home";
@@ -56,19 +56,6 @@ public class PartController {
 	@RequestMapping("/search.html")
 	public String search(@ModelAttribute Part part, ModelMap model,
 			HttpServletRequest request, BindingResult result) {
-
-		if (result.hasErrors()) {
-			System.err.println("ERRORs FOUNF +++++++++++++::::");
-			List<FieldError> errors = result.getFieldErrors();
-			for (FieldError e : errors) {
-				System.err.println("ERROR++++++++++:::: "
-						+ e.getDefaultMessage());
-			}
-
-		}
-
-		System.err.println("?????????11  "
-				+ ((Part) model.get("part")).getModifiedDate());
 
 		List<Part> list = partService.findPartLike(part);
 		model.put("partList", list);
@@ -88,18 +75,21 @@ public class PartController {
 	}
 
 	@RequestMapping("create.html")
-	public String create(@Valid @ModelAttribute("part") Part part, BindingResult result, Model model) {
+	public String create(@Valid @ModelAttribute("part") Part part,
+			BindingResult result, Model model) {
 
-		if (result.hasErrors())
-			return"part/createPart";
-
-		
-		//ModelAndView mav = new ModelAndView("part/createPart");
+		if (result.hasErrors()) {
+			// if there are any validation errors, then don't proceed, just
+			// return to the view to render the validation errors
+			return "part/createPart";
+		}
 
 		part.setModifiedDate(new Date());
 		partService.addPart(part);
 
 		model.addAttribute("message", "Part created successfully!");
+		// provide a new Part object - alternatively clear all fields
+		model.addAttribute("part", new Part());
 
 		return "part/createPart";
 	}
@@ -114,8 +104,9 @@ public class PartController {
 
 					@Override
 					protected Object convertElement(Object element) {
-						System.err.println("************Conver Element called!!!**********");
-						
+						System.err
+								.println("************Conver Element called!!!**********");
+
 						if (element instanceof String) {
 
 							// From the JSP 'element' will be a String

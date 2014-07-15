@@ -7,19 +7,34 @@ import org.springframework.stereotype.Component;
 import com.marsapps.iautomech.domain.Manufacturer;
 import com.marsapps.iautomech.service.ManufacturerService;
 
+/**
+ * This class is used by Spring when a conversion between a String to a
+ * Manufacturer is needed.
+ * 
+ * @author ortegm
+ * 
+ */
 @Component
 public class ManufacturerConverter implements Converter<String, Manufacturer> {
-	
-	public ManufacturerConverter() {
-		System.err.println("111 ++++++++++++++++ *******+++++++ WE GOT THIS --->>>>>>>> ");
-	}
-	
+
 	@Autowired
 	private ManufacturerService service;
-	
+
+	/**
+	 * Converts the given source (an ID which represents a Manufacturer) to Manufacturer
+	 * @return a Manufacturer object
+	 */
 	public Manufacturer convert(String source) {
-		System.err.println("WE GOT THIS --->>>>>>>> " + source);
-		return service.findById(Long.parseLong(source));
+		long id = -1;
+		try {
+			id = Long.parseLong(source);
+		} catch (NumberFormatException nfe) {
+			System.err.println("Could not convert '" + source
+					+ "' to a Manufactuer - it's not a valid ID: "
+					+ nfe.getMessage());
+		}
+
+		return (id != -1) ? service.findById(id) : null;
 	}
-	
+
 }
