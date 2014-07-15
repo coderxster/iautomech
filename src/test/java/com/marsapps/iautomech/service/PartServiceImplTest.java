@@ -33,6 +33,31 @@ public class PartServiceImplTest {
 	private ManufacturerService manufService;
 	
 	@Test
+	public void createPart() {
+		Part part = new Part();
+		part.setName("Washer Kit");
+		part.setPartNo("X123");
+		part.setSku("SKU222333");
+		part.setModelNo("A5436");
+		part.setQuantity(500L);
+		part.setDescription("This is my Part's description");
+		
+		Manufacturer manuf = new Manufacturer("Walbro","Mars", "555 123 321");
+		
+		manufService.addManufacturer(manuf);
+		part.setManufacturer(manuf);		
+		
+		Long id = partService.addPart(part);
+		
+		assertTrue(id > 0);
+		
+		Part fetchedPart = partService.findById(id);
+		assertEquals((long) part.getQuantity(), (long) fetchedPart.getQuantity());
+		assertEquals(part.getPartNo(), fetchedPart.getPartNo());
+		assertEquals(part.getManufacturer().getName(), fetchedPart.getManufacturer().getName());
+	}
+	
+	@Test
 	public void testFindById() {
 		Manufacturer manuf = new Manufacturer();
 		manuf.setName("Zama");

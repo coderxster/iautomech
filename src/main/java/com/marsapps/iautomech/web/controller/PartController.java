@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.marsapps.iautomech.domain.Manufacturer;
@@ -30,6 +32,7 @@ import com.marsapps.iautomech.web.converter.ManufacturerPropertyEditor;
 
 @Controller
 @RequestMapping("/part")
+@SessionAttributes("manufacturerList")
 public class PartController {
 
 	@Autowired
@@ -85,22 +88,20 @@ public class PartController {
 	}
 
 	@RequestMapping("create.html")
-	public ModelAndView create(@ModelAttribute Part part, BindingResult result, @RequestParam String manufacturerId) {
+	public String create(@Valid @ModelAttribute("part") Part part, BindingResult result, Model model) {
 
-		System.err.println("IDDDD +++++++++++ " + manufacturerId);
 		if (result.hasErrors())
-			System.err.println("BINDING ERROR WERE ENCOUNTERED!!!!!!");
+			return"part/createPart";
 
 		
-		ModelAndView mav = new ModelAndView("part/createPart");
+		//ModelAndView mav = new ModelAndView("part/createPart");
 
 		part.setModifiedDate(new Date());
-		Long id = partService.addPart(part);
+		partService.addPart(part);
 
-		mav.addObject("", (id != null) ? "Part created successfully!"
-				: "Part was not create. Please check with administrator");
+		model.addAttribute("message", "Part created successfully!");
 
-		return mav;
+		return "part/createPart";
 	}
 
 	@InitBinder
