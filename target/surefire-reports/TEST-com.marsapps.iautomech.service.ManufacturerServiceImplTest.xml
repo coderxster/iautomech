@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="6.867" errors="0" skipped="0" tests="6" name="com.marsapps.iautomech.service.ManufacturerServiceImplTest">
+<testsuite failures="0" time="6.312" errors="0" skipped="0" tests="6" name="com.marsapps.iautomech.service.ManufacturerServiceImplTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.6.0_34\jre\bin"/>
@@ -60,10 +60,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase time="5.11" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testGetAllManufacturers"/>
-  <testcase time="0.218" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testAddManufacturer"/>
-  <testcase time="0.183" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="removeManufacturer"/>
-  <testcase time="0.341" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindByIds"/>
-  <testcase time="0.277" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindManufacturer"/>
-  <testcase time="0.738" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testPaging"/>
+  <testcase time="4.813" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testGetAllManufacturers"/>
+  <testcase time="0.17" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testAddManufacturer"/>
+  <testcase time="0.175" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="removeManufacturer"/>
+  <testcase time="0.273" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindByIds"/>
+  <testcase time="0.225" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindManufacturer"/>
+  <testcase time="0.656" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testPaging"/>
 </testsuite>

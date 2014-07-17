@@ -48,13 +48,24 @@ public class PartController {
 
 	@RequestMapping("searchForm.html")
 	public String showSearchForm(Model model) {
-		model.addAttribute("part", new Part());
+		model.addAttribute("part", new Part());		
+		model.addAttribute("manufacturerList", manufService.getAllManufacturers());
 		return "part/searchPart";
 	}
 
 	@RequestMapping("/search.html")
-	public String search(@ModelAttribute Part part, ModelMap model,
-			HttpServletRequest request, BindingResult result) {
+	public String search(@ModelAttribute Part part,
+			BindingResult result, ModelMap model, HttpServletRequest request) {
+		System.err.println("READY!!!!!!!!!!!!!!");
+		if (result.hasErrors()) {
+			List<FieldError> errors = result.getFieldErrors();
+
+			for (FieldError error : errors) {
+				System.err.println("FIELD ++++++++++++++++: "
+						+ error.getField());
+			}
+			return "part/searchPart";
+		}
 
 		List<Part> list = partService.findPartLike(part);
 		model.put("partList", list);
@@ -86,7 +97,8 @@ public class PartController {
 		part.setModifiedDate(new Date());
 		Long id = partService.addPart(part);
 
-		model.addAttribute("message", "Part created successfully! It's ID for you reference is " + id);
+		model.addAttribute("message",
+				"Part created successfully! It's ID for you reference is " + id);
 		// provide a new Part object - alternatively clear all fields
 		model.addAttribute("part", new Part());
 

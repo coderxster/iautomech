@@ -87,7 +87,7 @@ public class PartServiceImplTest {
 		assertEquals("Zama", fetchedPart.getManufacturer().getName());
 	}
 	
-	@Test
+	//@Test
 	public void testFindPartLike() throws Exception {
 		Manufacturer manuf = new Manufacturer();
 		manuf.setName("Zama");
@@ -96,8 +96,8 @@ public class PartServiceImplTest {
 		
 		manufService.addManufacturer(manuf);
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Date date = sdf.parse("07/07/2014");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = sdf.parse("04/08/2014");
 		Date date2 = sdf.parse("08/07/2014");
 		
 		Part part1 = new Part();

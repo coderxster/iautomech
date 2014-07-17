@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -25,7 +26,7 @@ public class Part {
 	private Long id;
 	
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="manufacturer_id")
 	private Manufacturer manufacturer;
 	
@@ -49,7 +50,7 @@ public class Part {
 	@Column
 	private Long quantity;
 	
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name="modified_date")
 	private Date modifiedDate;
 

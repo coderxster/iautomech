@@ -90,6 +90,10 @@ table.dataTable th {
 	background-color: #9DA6B2;
 }
 
+table.dataTable tbody tr:HOVER {
+	cursor: pointer;
+}
+
 a {
 	font-family: arial;
 	font-size: 13px;
