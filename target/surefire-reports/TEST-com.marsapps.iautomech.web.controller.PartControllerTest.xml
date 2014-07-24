@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="2.114" errors="0" skipped="0" tests="3" name="com.marsapps.iautomech.web.controller.PartControllerTest">
+<testsuite failures="0" time="1.994" errors="0" skipped="0" tests="3" name="com.marsapps.iautomech.web.controller.PartControllerTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.6.0_34\jre\bin"/>
@@ -14,7 +14,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="D:\dev\projects\IAUTOM~1"/>
+    <property name="user.dir" value="D:\dev\projects\iautomech"/>
     <property name="java.runtime.version" value="1.6.0_34-b04"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.6.0_34\jre\lib\endorsed"/>
@@ -60,7 +60,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase time="0.421" classname="com.marsapps.iautomech.web.controller.PartControllerTest" name="testPartAttributeBinding"/>
-  <testcase time="0.125" classname="com.marsapps.iautomech.web.controller.PartControllerTest" name="testShowHomePage"/>
-  <testcase time="1.568" classname="com.marsapps.iautomech.web.controller.PartControllerTest" name="testSearchPartPage"/>
+  <testcase time="0.388" classname="com.marsapps.iautomech.web.controller.PartControllerTest" name="testPartAttributeBinding"/>
+  <testcase time="0.124" classname="com.marsapps.iautomech.web.controller.PartControllerTest" name="testShowHomePage"/>
+  <testcase time="1.482" classname="com.marsapps.iautomech.web.controller.PartControllerTest" name="testSearchPartPage"/>
 </testsuite>

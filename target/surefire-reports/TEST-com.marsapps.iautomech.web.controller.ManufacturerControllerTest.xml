@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="1.768" errors="0" skipped="0" tests="2" name="com.marsapps.iautomech.web.controller.ManufacturerControllerTest">
+<testsuite failures="0" time="1.62" errors="0" skipped="0" tests="2" name="com.marsapps.iautomech.web.controller.ManufacturerControllerTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.6.0_34\jre\bin"/>
@@ -14,7 +14,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="D:\dev\projects\IAUTOM~1"/>
+    <property name="user.dir" value="D:\dev\projects\iautomech"/>
     <property name="java.runtime.version" value="1.6.0_34-b04"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.6.0_34\jre\lib\endorsed"/>
@@ -60,6 +60,6 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase time="1.632" classname="com.marsapps.iautomech.web.controller.ManufacturerControllerTest" name="testListManufacturer"/>
-  <testcase time="0.136" classname="com.marsapps.iautomech.web.controller.ManufacturerControllerTest" name="testShowHome"/>
+  <testcase time="1.49" classname="com.marsapps.iautomech.web.controller.ManufacturerControllerTest" name="testListManufacturer"/>
+  <testcase time="0.13" classname="com.marsapps.iautomech.web.controller.ManufacturerControllerTest" name="testShowHome"/>
 </testsuite>

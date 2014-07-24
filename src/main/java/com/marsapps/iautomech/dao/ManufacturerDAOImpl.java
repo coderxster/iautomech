@@ -19,17 +19,18 @@ import com.marsapps.iautomech.domain.Manufacturer;
 import com.marsapps.iautomech.exception.RecordNotFoundException;
 
 @Repository
-public class ManufacturerDAOImpl implements ManufacturerDAO {
+public class ManufacturerDAOImpl extends AbstractBaseDAO<Manufacturer>
+		implements ManufacturerDAO {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+//	@Autowired
+//	private SessionFactory sessionFactory;
 
 	public Long addManufacturer(Manufacturer manufacturer) {
 		return (Long) getCurrentSession().save(manufacturer);
 	}
 
 	public List<Manufacturer> getAllManufacturers() {
-		return sessionFactory.getCurrentSession()
+		return getCurrentSession()
 				.createQuery("from Manufacturer").list();
 	}
 
@@ -37,10 +38,10 @@ public class ManufacturerDAOImpl implements ManufacturerDAO {
 		return (Manufacturer) getCurrentSession().get(Manufacturer.class, id);
 	}
 
-	public List<Manufacturer> findByIds(List<Long> ids) {
-		return getCurrentSession().createCriteria(Manufacturer.class)
-				.add(Restrictions.in("id", ids)).list();
-	}
+//	public List<Manufacturer> findByIds(List<Long> ids) {
+//		return getCurrentSession().createCriteria(Manufacturer.class)
+//				.add(Restrictions.in("id", ids)).list();
+//	}
 
 	public void deleteManufacturer(Long id) throws RecordNotFoundException {
 		Manufacturer manuf = findById(id);
@@ -52,29 +53,29 @@ public class ManufacturerDAOImpl implements ManufacturerDAO {
 					+ " was not found");
 	}
 
-	private Session getCurrentSession() {
-		return sessionFactory.getCurrentSession();
-	}
+//	public Session getCurrentSession() {
+//		return sessionFactory.getCurrentSession();
+//	}
 
 	public List<Manufacturer> findLike(Manufacturer manuf) {
 		return findLike(manuf, 0, 0);
 	}
 
-	public List<Manufacturer> findLike(Manufacturer manuf, int numRowsToShow,
-			int pageNum) {
-
-		/*** Can this be done with NamedQueries?? ***/
-
-		Example example = Example.create(manuf).enableLike(MatchMode.ANYWHERE)
-				.ignoreCase().excludeZeroes();
-
-		Criteria criteria = getCurrentSession().createCriteria(
-				Manufacturer.class).add(example);
-
-		if (numRowsToShow > 0 && pageNum > 0) {
-			criteria.setFirstResult((numRowsToShow * pageNum) - numRowsToShow);
-			criteria.setMaxResults(numRowsToShow);
-		}
+//	public List<Manufacturer> findLike(Manufacturer manuf, int numRowsToShow,
+//			int pageNum) {
+//
+//		/*** Can this be done with NamedQueries?? ***/
+//
+//		Example example = Example.create(manuf).enableLike(MatchMode.ANYWHERE)
+//				.ignoreCase().excludeZeroes();
+//
+//		Criteria criteria = getCurrentSession().createCriteria(
+//				Manufacturer.class).add(example);
+//
+//		if (numRowsToShow > 0 && pageNum > 0) {
+//			criteria.setFirstResult((numRowsToShow * pageNum) - numRowsToShow);
+//			criteria.setMaxResults(numRowsToShow);
+//		}
 
 		/********************** Another way of doing the above is with Restrictions ************************/
 		// Criteria criteria = getCurrentSession().createCriteria(
@@ -100,8 +101,8 @@ public class ManufacturerDAOImpl implements ManufacturerDAO {
 		// }
 		/***************************************************************************************************/
 
-		return criteria.list();
-	}
+//		return criteria.list();
+//	}
 
 	public void remove(Long id) {
 		Session session = getCurrentSession();
