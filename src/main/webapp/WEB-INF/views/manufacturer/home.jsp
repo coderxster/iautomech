@@ -13,8 +13,7 @@
 
 <body>
 	<div class="pageHeading">
-		<%-- 		<c:import url="../header.jsp" /> --%>
-		iAutoMech
+		<c:import url="../header.jsp" />
 	</div>
 
 	<div class="menuAndContent">
@@ -23,8 +22,11 @@
 		</div>
 
 		<div class="content">
-			Manufacturer<br /> Welcome to the Manufacturers section!<br/><br/>
-
+			<h3>Manufacturer</h3>
+			<br /> Welcome to the Manufacturers section!<br />
+			<br />
+			<p>Here you will be able to do all sorts of Manufacturer related
+				activities such as create, search, update and delete.</p>
 
 		</div>
 
@@ -35,8 +37,7 @@
 	</div>
 
 	<div class="footer">
-		<%-- 		<c:import url="footer.jsp" /> --%>
-		FOOTER
+		<c:import url="../footer.jsp" />
 	</div>
 </body>
 </html>

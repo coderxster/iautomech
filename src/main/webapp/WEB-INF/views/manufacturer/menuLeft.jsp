@@ -3,7 +3,7 @@
 
 	<table>
 		<tr>
-			<td><a href="/iautomech">Home</a></td>
+			<td><a href="/iautomech/home.html">Home</a></td>
 		</tr>
 		<tr>
 			<td><a href="/iautomech/manufacturer/home.html">Manufacturer Home</a></td>

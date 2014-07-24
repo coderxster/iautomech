@@ -20,11 +20,22 @@ import org.hibernate.annotations.NamedQuery;
 //@NamedQueries(value = { @NamedQuery(name = "findLike", query = "from Manufacturer where lower(name) like lower(:name) and ") })
 public class Manufacturer {
 
+	public Manufacturer() {
+		super();
+	}
+	
+	public Manufacturer(String name, String contactName, String contactNumber) {
+		this.name = name;
+		this.contactName = contactName;
+		this.contactNumber = contactNumber;
+	}
+	
 	@Id
 	@GeneratedValue
 	@Column(name = "manufacturer_id")
 	private Long id;
 
+	//Do we really need a bi-directional relationship between part and manufacturer???
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "manufacturer_id")
 	private Set<Part> parts;

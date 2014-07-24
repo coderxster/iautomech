@@ -20,16 +20,31 @@
 
 <script>
 	$(function() {
-		$("#manufDataTable").tablesorter({
+		$("#partDataTable").tablesorter({
 			widgets : [ 'zebra' ]
 		});
 	});
+	$(document).ready(function() {
+		$('#partDataTable tbody tr').click(function() {
+			alert($(this).text());
+		});
+	});
+	/*
+	$(document).ready(function() {
+
+	    $('#example tr').click(function() {
+	        var href = $(this).find("a").attr("href");
+	        if(href) {
+	            window.location = href;
+	        }
+	    });
+
+	});*/
 </script>
 </head>
 <body>
 	<div class="pageHeading">
-		<%-- 		<c:import url="../header.jsp" /> --%>
-		iAutoMech
+		<c:import url="../header.jsp" />
 	</div>
 
 	<div class="menuAndContent">
@@ -43,13 +58,15 @@
 				(where applicable).</p>
 
 
-			<form:form method="POST" modelAttribute="part"
-				action="search.html">
+			<form:form method="POST" modelAttribute="part" action="search.html">
 				<font style="color: red"><c:out value="${message}" /></font>
+				<form:errors path="*" cssClass="errorblock" element="div" />
 				<table>
 					<tr>
-						<td><form:label path="name" for="name">Name</form:label></td>
-						<td><form:input id="name" path="name" /></td>
+						<td><form:label path="id" for="id">Id</form:label></td>
+						<td><form:input id="id" path="id" size="6" /></td>
+						<td><form:label path="sku" for="sku">Sku</form:label></td>
+						<td><form:input id="sku" path="sku" size="6" /></td>
 						<td>&nbsp;</td>
 						<td><c:out value="Results per page" /></td>
 						<td><select name="rowsPerPage">
@@ -80,12 +97,32 @@
 						</select></td>
 					</tr>
 					<tr>
-						<td><form:label path="sku" for="sku">Sku</form:label></td>
-						<td><form:input id="sku" path="sku" /></td>
+						<td><form:label path="modelNo" for="modelNo">Model No.</form:label></td>
+						<td><form:input id="modelNo" path="modelNo" /></td>
+						<td><form:label path="partNo" for="partNo">Part No.</form:label></td>
+						<td><form:input id="partNo" path="partNo" /></td>
 					</tr>
 					<tr>
+						<td><form:label path="name" for="name">Name</form:label></td>
+						<td><form:input id="name" path="name" /></td>
 						<td><form:label path="modifiedDate" for="modifiedDate">Modified Date</form:label></td>
-						<td><form:input id="modifiedDate" path="modifiedDate" /></td>
+						<td><form:input id="modifiedDate" path="modifiedDate"
+								type="date" /></td>
+					</tr>
+					<tr>
+						<td><form:label for="manufacturer" path="manufacturer">Manufacturer</form:label></td>
+						<td><form:select id="manufacturer" path="manufacturer">
+								<option>-- Select a Manufacturer --</option>
+								<c:forEach items="${manufacturerList}" var="manuf">
+									<c:if test="${part.manufacturer.name eq manuf.name}">
+										<option selected="selected" label="${manuf.name}"
+											value="${manuf.id}">${manuf.name}</option>
+									</c:if>
+									<option label="${manuf.name}" value="${manuf.id}">${manuf.name}</option>
+								</c:forEach>
+							</form:select></td>
+						<td><form:label path="quantity" for="quantity">Quantity</form:label></td>
+						<td><form:input id="quantity" path="quantity" /></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="Search" /></td>
@@ -93,8 +130,7 @@
 				</table>
 			</form:form>
 
-
-			<c:if test="${partList ne null}">
+			<c:if test="${not empty partList}">
 
 				<form action="delete.html">
 					<table id="partDataTable" class="dataTable">
@@ -104,27 +140,30 @@
 								<th>Id</th>
 								<th>Name</th>
 								<th>Sku</th>
+								<th>Manufacturer</th>
 								<th>Modified Date</th>
 							</tr>
 						</thead>
-						<c:forEach var="part" items="${partList}"
-							varStatus="counter">
-							<tr>
-								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}">
-									<input type="checkbox" id="selectedIds" name="selectedIds"
-									value="${part.id}" />
-								</td>
-								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
-										value="${part.id}" /></td>
-								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
-										value="${part.name}" /></td>
-								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
-										value="${part.sku}" /></td>
-								<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
-										value="${part.modifiedDate}" /></td>
-							</tr>
-						</c:forEach>
-
+						<tbody>
+							<c:forEach var="part" items="${partList}" varStatus="counter">
+								<tr>
+									<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}">
+										<input type="checkbox" id="selectedIds" name="selectedIds"
+										value="${part.id}" />
+									</td>
+									<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+											value="${part.id}" /></td>
+									<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+											value="${part.name}" /></td>
+									<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+											value="${part.sku}" /></td>
+									<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+											value="${part.manufacturer.name}" /></td>
+									<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+											value="${part.modifiedDate}" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
 					</table>
 					<input type="submit" value="Delete" />
 				</form>
@@ -168,8 +207,7 @@
 	</div>
 
 	<div class="footer">
-		<%-- 		<c:import url="footer.jsp" /> --%>
-		FOOTER
+		<c:import url="../footer.jsp" />
 	</div>
 </body>
 </html>

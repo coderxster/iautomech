@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/springmvc-servlet.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
 @WebAppConfiguration
 public class PartControllerTest {
 

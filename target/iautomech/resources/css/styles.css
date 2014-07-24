@@ -90,6 +90,10 @@ table.dataTable th {
 	background-color: #9DA6B2;
 }
 
+table.dataTable tbody tr:HOVER {
+	cursor: pointer;
+}
+
 a {
 	font-family: arial;
 	font-size: 13px;
@@ -122,3 +126,10 @@ input:focus, select:focus, textarea:focus {
 	margin: 16px;
 }
 
+.successblock {
+	color: #000;
+	background-color: #C1F5D2;
+	border: 3px solid #178239;
+	padding: 8px;
+	margin: 16px;
+}

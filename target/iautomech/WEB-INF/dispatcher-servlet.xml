@@ -11,7 +11,7 @@
 
 	<!-- tell Spring to scan the named package for Spring components -->
 	<context:component-scan base-package="com.marsapps.iautomech.web.controller" />
-	
+
 	<!-- tell Spring we are using annotation driven features -->
 	<mvc:annotation-driven conversion-service="conversionService" />
 
@@ -22,6 +22,12 @@
 				<bean class="com.marsapps.iautomech.web.converter.ManufacturerConverter" />
 			</set>
 		</property>
+	</bean>
+
+	<!-- define a messageSource which will take care of our ResourceBundle message -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages" />
 	</bean>
 
 	<!-- defines a handler to serve static resources -->

@@ -24,7 +24,8 @@ import com.marsapps.iautomech.service.ManufacturerService;
 @Controller
 @RequestMapping("/manufacturer")
 @SessionAttributes("manufacturer")
-public class ManufacturerController {
+public class ManufacturerController extends
+		AbstractBaseController<Manufacturer> {
 
 	@Autowired
 	private ManufacturerService service;
@@ -78,7 +79,7 @@ public class ManufacturerController {
 
 		int rows = Integer.parseInt(rowsPerPage);
 		session.setAttribute("rowsPerPage", rows);
-		
+
 		List<Manufacturer> list = service.findLike(manuf, rows, 1);
 		model.put("manufacturerList", list);
 
@@ -90,7 +91,8 @@ public class ManufacturerController {
 		query.append("&contactnumber=" + manuf.getContactNumber());
 		model.put("query", query.toString());
 		model.put("page", 1);
-		model.put("maxpage", ((long) count / rows) == 0 ? 1 : (long) count / rows);
+		model.put("maxpage", ((long) count / rows) == 0 ? 1 : (long) count
+				/ rows);
 
 		return "manufacturer/searchManufacturer";
 	}
@@ -106,10 +108,12 @@ public class ManufacturerController {
 	public String navigate(@RequestParam("name") String name,
 			@RequestParam("contactname") String contactName,
 			@RequestParam("contactnumber") String contactNumber,
-			@RequestParam("page") String page, ModelMap model, HttpSession session) {
-
-		int rows = (Integer) session.getAttribute("rowsPerPage");
+			@RequestParam("page") String page, ModelMap model,
+			HttpSession session, @ModelAttribute Manufacturer modelType) {
 				
+		System.err.println("=====LETS 00000000000 SEE+++");
+		int rows = (Integer) session.getAttribute("rowsPerPage");
+
 		Manufacturer manuf = new Manufacturer();
 		manuf.setName(name);
 		manuf.setContactName(contactName);
@@ -126,7 +130,8 @@ public class ManufacturerController {
 		query.append("&contactnumber=" + manuf.getContactNumber());
 		model.put("query", query.toString());
 		model.put("page", page);
-		model.put("maxpage", ((long) count / rows) == 0 ? 1 : (long) count / rows);
+		model.put("maxpage", ((long) count / rows) == 0 ? 1 : (long) count
+				/ rows);
 
 		return "manufacturer/searchManufacturer";
 	}

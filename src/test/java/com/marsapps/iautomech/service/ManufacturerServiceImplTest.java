@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.marsapps.iautomech.domain.Manufacturer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/springmvc-servlet.xml" })
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/dispatcher-servlet.xml" })
 @WebAppConfiguration
 @TransactionConfiguration
 @Transactional

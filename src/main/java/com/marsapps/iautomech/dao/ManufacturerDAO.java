@@ -5,7 +5,7 @@ import java.util.List;
 import com.marsapps.iautomech.domain.Manufacturer;
 import com.marsapps.iautomech.exception.RecordNotFoundException;
 
-public interface ManufacturerDAO {
+public interface ManufacturerDAO extends BasicDAO<Manufacturer> {
 
 	public Long addManufacturer(Manufacturer manufacturer);
 	public List<Manufacturer> getAllManufacturers();	

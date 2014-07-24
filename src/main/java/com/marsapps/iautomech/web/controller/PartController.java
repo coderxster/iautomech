@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.marsapps.iautomech.domain.Manufacturer;
@@ -29,6 +32,7 @@ import com.marsapps.iautomech.web.converter.ManufacturerPropertyEditor;
 
 @Controller
 @RequestMapping("/part")
+@SessionAttributes("manufacturerList")
 public class PartController {
 
 	@Autowired
@@ -37,34 +41,31 @@ public class PartController {
 	@Autowired
 	private ManufacturerService manufService;
 
-	@RequestMapping(value={"/","/home"})
+	@RequestMapping(value = { "/", "/home" })
 	public String showHomePage() {
-		System.err.println("MADE IT THIS FAR!!!!!");
 		return "part/home";
 	}
 
 	@RequestMapping("searchForm.html")
 	public String showSearchForm(Model model) {
-		model.addAttribute("part", new Part());
+		model.addAttribute("part", new Part());		
+		model.addAttribute("manufacturerList", manufService.getAllManufacturers());
 		return "part/searchPart";
 	}
 
 	@RequestMapping("/search.html")
-	public String search(@ModelAttribute Part part, ModelMap model,
-			HttpServletRequest request, BindingResult result) {
-
+	public String search(@ModelAttribute Part part,
+			BindingResult result, ModelMap model, HttpServletRequest request) {
+		System.err.println("READY!!!!!!!!!!!!!!");
 		if (result.hasErrors()) {
-			System.err.println("ERRORs FOUNF +++++++++++++::::");
 			List<FieldError> errors = result.getFieldErrors();
-			for (FieldError e : errors) {
-				System.err.println("ERROR++++++++++:::: "
-						+ e.getDefaultMessage());
+
+			for (FieldError error : errors) {
+				System.err.println("FIELD ++++++++++++++++: "
+						+ error.getField());
 			}
-
+			return "part/searchPart";
 		}
-
-		System.err.println("?????????11  "
-				+ ((Part) model.get("part")).getModifiedDate());
 
 		List<Part> list = partService.findPartLike(part);
 		model.put("partList", list);
@@ -83,21 +84,25 @@ public class PartController {
 		return mav;
 	}
 
-	@RequestMapping("create")
-	public ModelAndView create(@ModelAttribute Part part, BindingResult result) {
+	@RequestMapping("create.html")
+	public String create(@Valid @ModelAttribute("part") Part part,
+			BindingResult result, Model model) {
 
-		if (result.hasErrors())
-			System.err.println("BINDING ERROR WERE ENCOUNTERED!!!!!!");
-
-		ModelAndView mav = new ModelAndView("part/createPart");
+		if (result.hasErrors()) {
+			// if there are any validation errors, then don't proceed, just
+			// return to the view to render the validation errors
+			return "part/createPart";
+		}
 
 		part.setModifiedDate(new Date());
 		Long id = partService.addPart(part);
 
-		mav.addObject("", (id != null) ? "Part created successfully!"
-				: "Part was not create. Please check with administrator");
+		model.addAttribute("message",
+				"Part created successfully! It's ID for you reference is " + id);
+		// provide a new Part object - alternatively clear all fields
+		model.addAttribute("part", new Part());
 
-		return mav;
+		return "part/createPart";
 	}
 
 	@InitBinder
@@ -110,8 +115,9 @@ public class PartController {
 
 					@Override
 					protected Object convertElement(Object element) {
-						System.err.println("************Conver Element called!!!**********");
-						
+						System.err
+								.println("************Conver Element called!!!**********");
+
 						if (element instanceof String) {
 
 							// From the JSP 'element' will be a String
