@@ -5,7 +5,7 @@ import java.util.List;
 import com.marsapps.iautomech.domain.Manufacturer;
 import com.marsapps.iautomech.exception.RecordNotFoundException;
 
-public interface ManufacturerService {
+public interface ManufacturerService extends BasicService<Manufacturer> {
 
 	public List<Manufacturer> getAllManufacturers();
 	public Long addManufacturer(Manufacturer manufacturer);
@@ -14,6 +14,6 @@ public interface ManufacturerService {
 	public List<Manufacturer> findLike(Manufacturer manuf);
 	public void removeManufacturer(Long id);
 	public List<Manufacturer> findLike(Manufacturer manuf, int numRowsToShow, int pageNum);
-	public Long getManufacturerCount(Manufacturer manuf);
 	
 }
+

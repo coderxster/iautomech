@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.marsapps.iautomech.dao.BasicDAO;
 import com.marsapps.iautomech.dao.ManufacturerDAO;
 import com.marsapps.iautomech.domain.Manufacturer;
 
@@ -14,7 +15,7 @@ import com.marsapps.iautomech.domain.Manufacturer;
 public class ManufacturerServiceImpl implements ManufacturerService {
 
 	@Autowired
-	private ManufacturerDAO manufacturerDAO;
+	private BasicDAO<Manufacturer> manufacturerDAO;
 
 	// Why is a transaction even for a read operation????
 	@Transactional
@@ -59,4 +60,26 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 	public Long getManufacturerCount(Manufacturer manuf) {
 		return manufacturerDAO.getManufacturerCount(manuf);
 	}
+	
+	@Transactional
+	public Long getCount(Manufacturer entity) {
+		manufacturerDAO.getCount(entity);
+		return null;
+	}
+
+	public Long create(Manufacturer entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void update(Manufacturer entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

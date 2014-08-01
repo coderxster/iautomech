@@ -22,26 +22,17 @@ import com.marsapps.iautomech.exception.RecordNotFoundException;
 public class ManufacturerDAOImpl extends AbstractBaseDAO<Manufacturer>
 		implements ManufacturerDAO {
 
-//	@Autowired
-//	private SessionFactory sessionFactory;
-
 	public Long addManufacturer(Manufacturer manufacturer) {
 		return (Long) getCurrentSession().save(manufacturer);
 	}
 
 	public List<Manufacturer> getAllManufacturers() {
-		return getCurrentSession()
-				.createQuery("from Manufacturer").list();
+		return getCurrentSession().createQuery("from Manufacturer").list();
 	}
 
 	public Manufacturer findById(Long id) {
 		return (Manufacturer) getCurrentSession().get(Manufacturer.class, id);
 	}
-
-//	public List<Manufacturer> findByIds(List<Long> ids) {
-//		return getCurrentSession().createCriteria(Manufacturer.class)
-//				.add(Restrictions.in("id", ids)).list();
-//	}
 
 	public void deleteManufacturer(Long id) throws RecordNotFoundException {
 		Manufacturer manuf = findById(id);
@@ -53,56 +44,9 @@ public class ManufacturerDAOImpl extends AbstractBaseDAO<Manufacturer>
 					+ " was not found");
 	}
 
-//	public Session getCurrentSession() {
-//		return sessionFactory.getCurrentSession();
-//	}
-
 	public List<Manufacturer> findLike(Manufacturer manuf) {
 		return findLike(manuf, 0, 0);
 	}
-
-//	public List<Manufacturer> findLike(Manufacturer manuf, int numRowsToShow,
-//			int pageNum) {
-//
-//		/*** Can this be done with NamedQueries?? ***/
-//
-//		Example example = Example.create(manuf).enableLike(MatchMode.ANYWHERE)
-//				.ignoreCase().excludeZeroes();
-//
-//		Criteria criteria = getCurrentSession().createCriteria(
-//				Manufacturer.class).add(example);
-//
-//		if (numRowsToShow > 0 && pageNum > 0) {
-//			criteria.setFirstResult((numRowsToShow * pageNum) - numRowsToShow);
-//			criteria.setMaxResults(numRowsToShow);
-//		}
-
-		/********************** Another way of doing the above is with Restrictions ************************/
-		// Criteria criteria = getCurrentSession().createCriteria(
-		// Manufacturer.class);
-
-		// if (manuf.getName() != null && !manuf.getName().equals(""))
-		// criteria.add(Restrictions.ilike("name", manuf.getName(),
-		// MatchMode.ANYWHERE));
-		//
-		// if (manuf.getContactName() != null
-		// && !manuf.getContactName().equals(""))
-		// criteria.add(Restrictions.ilike("contactName",
-		// manuf.getContactName(), MatchMode.ANYWHERE));
-		//
-		// if (manuf.getContactNumber() != null
-		// && !manuf.getContactNumber().equals(""))
-		// criteria.add(Restrictions.ilike("contactNumber",
-		// manuf.getContactNumber(), MatchMode.ANYWHERE));
-		//
-		// if (numRowsToShow > 0 && pageNum > 0) {
-		// criteria.setFirstResult((numRowsToShow * pageNum) - numRowsToShow);
-		// criteria.setMaxResults(numRowsToShow);
-		// }
-		/***************************************************************************************************/
-
-//		return criteria.list();
-//	}
 
 	public void remove(Long id) {
 		Session session = getCurrentSession();
@@ -119,4 +63,5 @@ public class ManufacturerDAOImpl extends AbstractBaseDAO<Manufacturer>
 
 		return (Long) criteria.uniqueResult();
 	}
+
 }

@@ -26,20 +26,36 @@
 	});
 	$(document).ready(function() {
 		$('#partDataTable tbody tr').click(function() {
-			alert($(this).text());
+			$('#id').val($(this).children('#id').text());
+			$('#name').val($(this).children('#name').text());
+			$('#sku').val($(this).children('#sku').text());
+			$('#modifiedDate').val($(this).children('#modifiedDate').text());
+			$('#quantity').val($(this).children('#quantity').text());
+			$('#partNo').val($(this).children('#partNo').text());
+			$('#modelNo').val($(this).children('#modelNo').text());
+			$("select #manufacturer option").each(function() { 
+				this.val = (this.text == $('#partDataTable tbody tr').children('#manufacturer').text()); 
+				}
+			);			
 		});
+		
+		$("#clear").click(function () {
+			$('#id').val('');
+			$('#name').val('');
+			$('#sku').val('');
+			$('#modifiedDate').val('');
+			$('#quantity').val('');
+			$('#partNo').val('');
+			$('#modelNo').val('');
+			$("select #manufacturer option").each(function() { 
+				this.selected = '--Select a Manufacturer --'; 
+				}
+			);
+		});		
+		
 	});
-	/*
-	$(document).ready(function() {
+	
 
-	    $('#example tr').click(function() {
-	        var href = $(this).find("a").attr("href");
-	        if(href) {
-	            window.location = href;
-	        }
-	    });
-
-	});*/
 </script>
 </head>
 <body>
@@ -126,6 +142,7 @@
 					</tr>
 					<tr>
 						<td><input type="submit" value="Search" /></td>
+						<td><input id="clear" type="button" value="Clear" /></td>
 					</tr>
 				</table>
 			</form:form>
@@ -135,13 +152,16 @@
 				<form action="delete.html">
 					<table id="partDataTable" class="dataTable">
 						<thead>
-							<tr>
+							<tr style="align:center">
 								<th></th>
 								<th>Id</th>
 								<th>Name</th>
 								<th>Sku</th>
 								<th>Manufacturer</th>
 								<th>Modified Date</th>
+								<th>Quantity</th>
+								<th>Part No.</th>
+								<th>Model No.</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -151,16 +171,22 @@
 										<input type="checkbox" id="selectedIds" name="selectedIds"
 										value="${part.id}" />
 									</td>
-									<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+									<td id="id" class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
 											value="${part.id}" /></td>
-									<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+									<td id="name" class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
 											value="${part.name}" /></td>
-									<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+									<td id="sku" class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
 											value="${part.sku}" /></td>
-									<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+									<td id="manufacturer" class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
 											value="${part.manufacturer.name}" /></td>
-									<td class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+									<td id="modifiedDate" class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
 											value="${part.modifiedDate}" /></td>
+									<td id="quantity" class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+											value="${part.quantity}" /></td>
+									<td id="partNo" class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+											value="${part.partNo}" /></td>
+									<td id="modelNo" class="${(counter.count % 2 == 0) ? 'rowOdd' : 'rowEven'}"><c:out
+											value="${part.modelNo}" /></td>											
 								</tr>
 							</c:forEach>
 						</tbody>

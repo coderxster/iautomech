@@ -16,4 +16,5 @@ public interface ManufacturerDAO extends BasicDAO<Manufacturer> {
 	public void remove(Long id);
 	public List<Manufacturer> findLike(Manufacturer manuf, int numRowsToShow, int pageNum);
 	public Long getManufacturerCount(Manufacturer manuf);
+	public Long getCount(Manufacturer entity);
 }

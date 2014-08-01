@@ -3,11 +3,13 @@ package com.marsapps.iautomech.dao;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,26 +19,42 @@ import com.marsapps.iautomech.domain.Part;
 
 public class AbstractBaseDAO<T> implements BasicDAO<T> {
 
+	private Logger log = Logger.getLogger(AbstractBaseDAO.class);
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 		
 	public List<T> findLike(T entity, int numRowsToShow,
 			int pageNum) {
 
-		/*** Can this be done with NamedQueries?? ***/
+		/*** Can this be done with a NamedQuery?? ***/
 
-		Example example = Example.create(entity).enableLike(MatchMode.ANYWHERE)
-				.ignoreCase().excludeZeroes();
+		Example example = Example.create(entity)
+				.enableLike(MatchMode.ANYWHERE)
+				.ignoreCase()
+				.excludeZeroes();
 
-		Criteria criteria = getCurrentSession().createCriteria(
-				entity.getClass()).add(example);
+		Criteria criteria = getCurrentSession()
+				.createCriteria(entity.getClass()).add(example);
 
 		if (numRowsToShow > 0 && pageNum > 0) {
 			criteria.setFirstResult((numRowsToShow * pageNum) - numRowsToShow);
 			criteria.setMaxResults(numRowsToShow);
+			criteria.setProjection(Projections.rowCount());
 		}
 
 		return criteria.list();
+	}
+	
+	public Long getCount(T entity) {
+		Example example = Example.create(entity).enableLike(MatchMode.ANYWHERE)
+				.ignoreCase().excludeZeroes();
+
+		Criteria criteria = getCurrentSession()
+				.createCriteria(Manufacturer.class).add(example)
+				.setProjection(Projections.rowCount());
+
+		return (Long) criteria.uniqueResult();
 	}
 	
 	public Session getCurrentSession() {
