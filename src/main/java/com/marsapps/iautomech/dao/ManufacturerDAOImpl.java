@@ -44,6 +44,29 @@ public class ManufacturerDAOImpl extends AbstractBaseDAO<Manufacturer>
 					+ " was not found");
 	}
 
+	public List findLike(Manufacturer entity, int numRowsToShow,
+			int pageNum) {
+
+		/*** Can this be done with a NamedQuery?? ***/
+
+		Example example = Example.create(entity)
+				.enableLike(MatchMode.ANYWHERE)
+				.ignoreCase()
+				.excludeZeroes();
+
+		Criteria criteria = getCurrentSession()
+				.createCriteria(entity.getClass()).add(example);
+
+		if (numRowsToShow > 0 && pageNum > 0) {
+			criteria.setFirstResult((numRowsToShow * pageNum) - numRowsToShow);
+			criteria.setMaxResults(numRowsToShow);
+			//why was the below line here??
+			//criteria.setProjection(Projections.rowCount());
+		}
+
+		return criteria.list();
+	}
+	
 	public List<Manufacturer> findLike(Manufacturer manuf) {
 		return findLike(manuf, 0, 0);
 	}

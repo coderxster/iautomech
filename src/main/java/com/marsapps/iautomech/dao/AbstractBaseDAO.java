@@ -24,27 +24,27 @@ public class AbstractBaseDAO<T> implements BasicDAO<T> {
 	@Autowired
 	private SessionFactory sessionFactory;
 		
-	public List<T> findLike(T entity, int numRowsToShow,
-			int pageNum) {
-
-		/*** Can this be done with a NamedQuery?? ***/
-
-		Example example = Example.create(entity)
-				.enableLike(MatchMode.ANYWHERE)
-				.ignoreCase()
-				.excludeZeroes();
-
-		Criteria criteria = getCurrentSession()
-				.createCriteria(entity.getClass()).add(example);
-
-		if (numRowsToShow > 0 && pageNum > 0) {
-			criteria.setFirstResult((numRowsToShow * pageNum) - numRowsToShow);
-			criteria.setMaxResults(numRowsToShow);
-			criteria.setProjection(Projections.rowCount());
-		}
-
-		return criteria.list();
-	}
+//	public List<T> findLike(T entity, int numRowsToShow,
+//			int pageNum) {
+//
+//		/*** Can this be done with a NamedQuery?? ***/
+//
+//		Example example = Example.create(entity)
+//				.enableLike(MatchMode.ANYWHERE)
+//				.ignoreCase()
+//				.excludeZeroes();
+//
+//		Criteria criteria = getCurrentSession()
+//				.createCriteria(entity.getClass()).add(example);
+//
+//		if (numRowsToShow > 0 && pageNum > 0) {
+//			criteria.setFirstResult((numRowsToShow * pageNum) - numRowsToShow);
+//			criteria.setMaxResults(numRowsToShow);
+//			criteria.setProjection(Projections.rowCount());
+//		}
+//
+//		return criteria.list();
+//	}
 	
 	public Long getCount(T entity) {
 		Example example = Example.create(entity).enableLike(MatchMode.ANYWHERE)

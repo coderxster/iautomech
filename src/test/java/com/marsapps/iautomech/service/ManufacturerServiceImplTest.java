@@ -145,7 +145,7 @@ public class ManufacturerServiceImplTest {
 		}
 
 		Manufacturer manufLike = new Manufacturer();
-		manufLike.setName("tna");
+		manufLike.setName("est");
 		manufLike.setContactName("tact");
 
 		int numRowsToShow = 5;

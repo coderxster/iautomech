@@ -15,7 +15,7 @@ import com.marsapps.iautomech.domain.Manufacturer;
 public class ManufacturerServiceImpl implements ManufacturerService {
 
 	@Autowired
-	private BasicDAO<Manufacturer> manufacturerDAO;
+	private ManufacturerDAO manufacturerDAO;
 
 	// Why is a transaction even for a read operation????
 	@Transactional
