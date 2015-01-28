@@ -31,4 +31,13 @@ public class PartServiceImpl implements PartService {
 		return partDAO.findPartLike(partLike);
 	}
 
+	@Transactional
+	public List<Part> findPartLike(Part partLike, int numRowsToShow, int pageNum) {
+		return partDAO.findPartLike(partLike, numRowsToShow, pageNum);
+	}
+
+	@Transactional
+	public Long getCount(Part part) {
+		return partDAO.getCount(part);
+	}
 }

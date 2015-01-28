@@ -51,7 +51,7 @@ public class AbstractBaseDAO<T> implements BasicDAO<T> {
 				.ignoreCase().excludeZeroes();
 
 		Criteria criteria = getCurrentSession()
-				.createCriteria(Manufacturer.class).add(example)
+				.createCriteria(entity.getClass()).add(example)
 				.setProjection(Projections.rowCount());
 
 		return (Long) criteria.uniqueResult();

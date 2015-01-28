@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,28 +49,9 @@ public class PartController {
 
 	@RequestMapping("searchForm.html")
 	public String showSearchForm(Model model) {
-		model.addAttribute("part", new Part());		
-		model.addAttribute("manufacturerList", manufService.getAllManufacturers());
-		return "part/searchPart";
-	}
-
-	@RequestMapping("/search.html")
-	public String search(@ModelAttribute Part part,
-			BindingResult result, ModelMap model, HttpServletRequest request) {
-		System.err.println("READY!!!!!!!!!!!!!!");
-		if (result.hasErrors()) {
-			List<FieldError> errors = result.getFieldErrors();
-
-			for (FieldError error : errors) {
-				System.err.println("FIELD ++++++++++++++++: "
-						+ error.getField());
-			}
-			return "part/searchPart";
-		}
-
-		List<Part> list = partService.findPartLike(part);
-		model.put("partList", list);
-
+		model.addAttribute("part", new Part());
+		model.addAttribute("manufacturerList",
+				manufService.getAllManufacturers());
 		return "part/searchPart";
 	}
 
@@ -98,11 +80,113 @@ public class PartController {
 		Long id = partService.addPart(part);
 
 		model.addAttribute("message",
-				"Part created successfully! It's ID for you reference is " + id);
+				"Part created successfully! For your reference, the PartID is "
+						+ id);
 		// provide a new Part object - alternatively clear all fields
 		model.addAttribute("part", new Part());
 
 		return "part/createPart";
+	}
+
+	@RequestMapping("search.html")
+	public String search(@ModelAttribute("part") Part part,
+			@RequestParam("rowsPerPage") String rowsPerPage, ModelMap model,
+			BindingResult result, HttpSession session) {
+
+		int rows = Integer.parseInt(rowsPerPage);
+		session.setAttribute("rowsPerPage", rows);
+
+		List<Part> list = partService.findPartLike(part, rows, 1);
+		model.put("partList", list);
+
+		Long count = partService.getCount(part);
+
+		StringBuilder query = new StringBuilder();
+		query.append("name=" + ((part.getName() == null) ? "" : part.getName()));
+		query.append("&sku=" + ((part.getSku() == null) ? "" : part.getSku()));
+		query.append("&manufacturer=" + part.getManufacturer().getId());
+		query.append("&modelno="
+				+ ((part.getModelNo() == null) ? "" : part.getModelNo()));
+		query.append("&partno="
+				+ ((part.getPartNo() == null) ? "" : part.getPartNo()));
+		query.append("&description="
+				+ ((part.getDescription() == null) ? "" : part.getDescription()));
+		query.append("&quantity="
+				+ ((part.getQuantity() == null) ? "" : part.getQuantity()));
+		// query.append("&contactnumber=" + part.getModifiedDate());
+
+		System.err.println("query: " + query);
+		System.err.println("count: " + count);
+		System.err.println("rows: " + rows);
+		System.err.println("maxpage: "
+				+ (((long) count / rows) == 0 ? 1 : (long) Math
+						.ceil((double) count / rows)));
+
+		model.put("query", query.toString());
+		model.put("page", 1);
+		model.put(
+				"maxpage",
+				(((long) count / rows) == 0 ? 1 : (long) Math
+						.ceil((double) count / rows)));
+
+		return "part/searchPart";
+	}
+
+	@RequestMapping("/doPaging.html")
+	public String navigate(@RequestParam("name") String name,
+			@RequestParam("manufacturer") String manufacturer,
+			@RequestParam("sku") String sku,
+			@RequestParam("modelno") String modelNo,
+			@RequestParam("partno") String partNo,
+			@RequestParam("description") String desc,
+			@RequestParam("quantity") String quantity,
+			@RequestParam("page") String page, ModelMap model,
+			HttpSession session, @ModelAttribute Part modelType) {
+
+		System.err.println("=====Paging+++++");
+		int rows = (Integer) session.getAttribute("rowsPerPage");
+
+		Part part = new Part();
+		part.setName(name);
+		part.setSku(sku);
+		part.setModelNo(modelNo);
+		part.setPartNo(partNo);
+		part.setDescription(desc);
+
+		if (quantity != null && !quantity.equals(""))
+			part.setQuantity(Long.parseLong(quantity));
+
+		Manufacturer manuf = manufService
+				.findById(Long.parseLong(manufacturer));
+		part.setManufacturer(manuf);
+
+		List<Part> list = partService.findPartLike(part, rows,
+				Integer.parseInt(page));
+		model.put("partList", list);
+		Long count = partService.getCount(part);
+
+		StringBuilder query = new StringBuilder();
+		query.append("name=" + ((part.getName() == null) ? "" : part.getName()));
+		query.append("&sku=" + ((part.getSku() == null) ? "" : part.getSku()));
+		query.append("&manufacturer=" + part.getManufacturer().getId());
+		query.append("&modelno="
+				+ ((part.getModelNo() == null) ? "" : part.getModelNo()));
+		query.append("&partno="
+				+ ((part.getPartNo() == null) ? "" : part.getPartNo()));
+		query.append("&description="
+				+ ((part.getDescription() == null) ? "" : part.getDescription()));
+		query.append("&quantity="
+				+ ((part.getQuantity() == null) ? "" : part.getQuantity()));
+		// query.append("&contactnumber=" + part.getModifiedDate());
+
+		model.put("query", query.toString());
+		model.put("page", page);
+		model.put(
+				"maxpage",
+				(((long) count / rows) == 0 ? 1 : (long) Math
+						.ceil((double) count / rows)));
+
+		return "part/searchPart";
 	}
 
 	@InitBinder

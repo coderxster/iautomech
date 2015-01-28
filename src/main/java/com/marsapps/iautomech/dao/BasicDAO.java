@@ -17,4 +17,6 @@ public interface BasicDAO<T> {
 	public T findById(Long id);
 	
 	public List<T> findByIds(List<Long> ids);
+	
+	public Long getCount(T entity);
 }

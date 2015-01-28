@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 import com.marsapps.iautomech.domain.Part;
 
 @Repository
-public class PartDAOImpl implements PartDAO {
+public class PartDAOImpl extends AbstractBaseDAO<Part> implements PartDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -35,11 +35,16 @@ public class PartDAOImpl implements PartDAO {
 	}
 
 	public List<Part> findPartLike(Part partLike) {
+		return findPartLike(partLike, 0, 0);
+	}
+
+	public List<Part> findPartLike(Part partLike, int numRowsToShow, int pageNum) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
 				Part.class);
 
 
-		criteria.add(Example.create(partLike).enableLike(MatchMode.ANYWHERE)
+		criteria.add(Example.create(partLike)
+				.enableLike(MatchMode.ANYWHERE)
 				.ignoreCase()
 				.excludeZeroes()
 				//provide a custom Property selector to ignore empty Strings - POSSIBLY EXTRACT THIS INTO A UTIL CLASS/PACKAGE??
@@ -81,7 +86,16 @@ public class PartDAOImpl implements PartDAO {
 
 			criteria.add(or).add(Restrictions.lt("modifiedDate", maxDate));
 		}
+		
+		if (numRowsToShow > 0 && pageNum > 0) {
+			criteria.setFirstResult((numRowsToShow * pageNum) - numRowsToShow);
+			criteria.setMaxResults(numRowsToShow);
+			//why was the below line here??
+			//criteria.setProjection(Projections.rowCount());
+		}
 
 		return criteria.list();
 	}
+	
+	
 }
