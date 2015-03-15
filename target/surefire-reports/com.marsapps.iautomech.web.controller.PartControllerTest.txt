@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.marsapps.iautomech.web.controller.PartControllerTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.898 sec
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.977 sec

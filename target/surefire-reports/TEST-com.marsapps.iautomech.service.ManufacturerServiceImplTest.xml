@@ -1,69 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="7.262" errors="0" skipped="0" tests="6" name="com.marsapps.iautomech.service.ManufacturerServiceImplTest">
+<testsuite failures="0" time="5.598" errors="0" skipped="0" tests="6" name="com.marsapps.iautomech.service.ManufacturerServiceImplTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="c:\Program Files\Java\jdk1.6.0_45\jre\bin"/>
-    <property name="java.vm.version" value="20.45-b01"/>
-    <property name="java.vm.vendor" value="Sun Microsystems Inc."/>
-    <property name="java.vendor.url" value="http://java.sun.com/"/>
+    <property name="sun.boot.library.path" value="c:\Program Files\Java\jdk1.7.0_75\jre\bin"/>
+    <property name="java.vm.version" value="24.75-b04"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="Java HotSpot(TM) Client VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
     <property name="user.country" value="AU"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="c:\work\other\dev\projects\iautomech"/>
-    <property name="java.runtime.version" value="1.6.0_45-b06"/>
+    <property name="user.dir" value="c:\work\dev\Projects\iautomech"/>
+    <property name="java.runtime.version" value="1.7.0_75-b13"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="c:\Program Files\Java\jdk1.6.0_45\jre\lib\endorsed"/>
+    <property name="java.endorsed.dirs" value="c:\Program Files\Java\jdk1.7.0_75\jre\lib\endorsed"/>
     <property name="os.arch" value="x86"/>
     <property name="java.io.tmpdir" value="C:\Users\ortegm\AppData\Local\Temp\"/>
     <property name="line.separator" value="
 "/>
-    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 7"/>
     <property name="classworlds.conf" value="c:/work/dev/tools/apache-maven-3.2.1-bin/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="c:\Program Files\Java\jdk1.6.0_45\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;x:\bin;.;C:\Program Files\Git\local\bin;C:\Program Files\Git\mingw\bin;C:\Program Files\Git\bin;c:\ProgramData\Oracle\Java\javapath;c:\WINDOWS\system32;c:\WINDOWS;c:\WINDOWS\System32\Wbem;c:\WINDOWS\System32\WindowsPowerShell\v1.0\;&quot;C;C:\Program Files\Git\Program Files\Common Files\EMC&quot;;c:\Program Files\Microsoft Application Virtualization Client;c:\Program Files\IBM\CICS Transaction Gateway\bin;c:\ORANT\ora11g\bin;c:\Program Files\IBM\IBM CICS Universal Client\bin;c:\ORANT\ora9i\bin;c:\Program Files\Oracle\jre\1.1.8\bin;c:\Program Files\Common Files\OTG;c:\WINDOWS\system32\;c:\WINDOWS\system32\Wbem;c:\Program Files\ManageSoft\Common;GLISH;c:\ORANT\bin;c:\Program Files\IBM\IBM CICS Transaction Gateway\BIN;c:\Program Files\IBM\JRE\1.1\bin;c:\work\dev\tools\apache-maven-3.2.1-bin\bin;c:\Program Files\Java\jdk1.6.0_45\bin;C:\Program Files\Git\cmd;."/>
+    <property name="java.library.path" value="c:\Program Files\Java\jdk1.7.0_75\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;x:\bin;.;C:\Program Files\Git\local\bin;C:\Program Files\Git\mingw\bin;C:\Program Files\Git\bin;c:\ProgramData\Oracle\Java\javapath;c:\WINDOWS\system32;c:\WINDOWS;c:\WINDOWS\System32\Wbem;c:\WINDOWS\System32\WindowsPowerShell\v1.0\;&quot;C;C:\Program Files\Git\Program Files\Common Files\EMC&quot;;c:\Program Files\Microsoft Application Virtualization Client;c:\Program Files\IBM\CICS Transaction Gateway\bin;c:\ORANT\ora11g\bin;c:\Program Files\IBM\IBM CICS Universal Client\bin;c:\ORANT\ora9i\bin;c:\Program Files\Oracle\jre\1.1.8\bin;c:\Program Files\Common Files\OTG;c:\WINDOWS\system32\;c:\WINDOWS\system32\Wbem;c:\Program Files\ManageSoft\Common;GLISH;c:\ORANT\bin;c:\Program Files\IBM\IBM CICS Transaction Gateway\BIN;c:\Program Files\IBM\JRE\1.1\bin;c:\work\dev\tools\apache-maven-3.2.1-bin\bin;c:\Program Files\Java\jdk1.6.0_45\bin;C:\Program Files\Git\cmd;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="java.class.version" value="50.0"/>
+    <property name="java.class.version" value="51.0"/>
     <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
     <property name="os.version" value="6.1"/>
     <property name="user.home" value="C:\Users\ortegm"/>
     <property name="user.timezone" value="Australia/Sydney"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
     <property name="file.encoding" value="Cp1252"/>
-    <property name="java.specification.version" value="1.6"/>
     <property name="user.name" value="ortegm"/>
     <property name="java.class.path" value="c:/work/dev/tools/apache-maven-3.2.1-bin/boot/plexus-classworlds-2.5.1.jar"/>
     <property name="org.slf4j.simpleLogger.defaultLogLevel" value="info"/>
-    <property name="java.vm.specification.version" value="1.0"/>
+    <property name="java.vm.specification.version" value="1.7"/>
     <property name="sun.arch.data.model" value="32"/>
-    <property name="java.home" value="c:\Program Files\Java\jdk1.6.0_45\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher tomcat7:deploy"/>
-    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="java.home" value="c:\Program Files\Java\jdk1.7.0_75\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher package tomcat7:deploy"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="java.version" value="1.6.0_45"/>
-    <property name="java.ext.dirs" value="c:\Program Files\Java\jdk1.6.0_45\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
-    <property name="sun.boot.class.path" value="c:\Program Files\Java\jdk1.6.0_45\jre\lib\resources.jar;c:\Program Files\Java\jdk1.6.0_45\jre\lib\rt.jar;c:\Program Files\Java\jdk1.6.0_45\jre\lib\sunrsasign.jar;c:\Program Files\Java\jdk1.6.0_45\jre\lib\jsse.jar;c:\Program Files\Java\jdk1.6.0_45\jre\lib\jce.jar;c:\Program Files\Java\jdk1.6.0_45\jre\lib\charsets.jar;c:\Program Files\Java\jdk1.6.0_45\jre\lib\modules\jdk.boot.jar;c:\Program Files\Java\jdk1.6.0_45\jre\classes"/>
-    <property name="java.vendor" value="Sun Microsystems Inc."/>
+    <property name="java.version" value="1.7.0_75"/>
+    <property name="java.ext.dirs" value="c:\Program Files\Java\jdk1.7.0_75\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="c:\Program Files\Java\jdk1.7.0_75\jre\lib\resources.jar;c:\Program Files\Java\jdk1.7.0_75\jre\lib\rt.jar;c:\Program Files\Java\jdk1.7.0_75\jre\lib\sunrsasign.jar;c:\Program Files\Java\jdk1.7.0_75\jre\lib\jsse.jar;c:\Program Files\Java\jdk1.7.0_75\jre\lib\jce.jar;c:\Program Files\Java\jdk1.7.0_75\jre\lib\charsets.jar;c:\Program Files\Java\jdk1.7.0_75\jre\lib\jfr.jar;c:\Program Files\Java\jdk1.7.0_75\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
     <property name="maven.home" value="c:\work\dev\tools\apache-maven-3.2.1-bin"/>
     <property name="file.separator" value="\"/>
-    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase time="5.718" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testGetAllManufacturers"/>
-  <testcase time="0.173" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testAddManufacturer"/>
-  <testcase time="0.185" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="removeManufacturer"/>
-  <testcase time="0.279" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindByIds"/>
-  <testcase time="0.241" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindManufacturer"/>
-  <testcase time="0.666" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testPaging"/>
+  <testcase time="4.496" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testGetAllManufacturers"/>
+  <testcase time="0.27" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testAddManufacturer"/>
+  <testcase time="0.055" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="removeManufacturer"/>
+  <testcase time="0.445" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindByIds"/>
+  <testcase time="0.106" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testFindManufacturer"/>
+  <testcase time="0.226" classname="com.marsapps.iautomech.service.ManufacturerServiceImplTest" name="testPaging"/>
 </testsuite>
