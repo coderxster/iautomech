@@ -24,7 +24,7 @@
 
 		<div class="content">
 			<form:form method="POST" modelAttribute="manufacturer"
-				action="create">
+				action="create.html">
 
 				<table>
 					<tr>

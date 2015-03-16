@@ -43,7 +43,7 @@ public class ManufacturerController extends
 		return "manufacturer/createManufacturer";
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/create.html", method = RequestMethod.POST)
 	public String create(
 			@ModelAttribute("manufacturer") Manufacturer manufacturer,
 			ModelMap model) {

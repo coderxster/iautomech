@@ -2,6 +2,8 @@ package com.marsapps.iautomech.web.controller;
 
 import java.util.Arrays;
 
+import javax.transaction.Transactional;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +14,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
@@ -32,6 +35,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/dispatcher-servlet.xml" })
 @WebAppConfiguration
+@TransactionConfiguration
+@Transactional
 public class ManufacturerControllerTest {
 
 	@Autowired
@@ -50,10 +55,10 @@ public class ManufacturerControllerTest {
 
 	@Test
 	public void testShowHome() throws Exception {
-		mockMvc.perform(get("/manufacturer/home.html"))
-				.andExpect(view().name("manufacturer/home"));
+		mockMvc.perform(get("/manufacturer/home.html")).andExpect(
+				view().name("manufacturer/home"));
 	}
-	
+
 	@Test
 	public void testListManufacturer() throws Exception {
 
@@ -69,13 +74,26 @@ public class ManufacturerControllerTest {
 		manuf2.setContactName("SomeOtherName");
 		manuf2.setContactNumber("123-555");
 
-//		when(mockService.getAllManufacturers()).thenReturn(
-//				Arrays.asList(manuf1, manuf2));
+		// when(mockService.getAllManufacturers()).thenReturn(
+		// Arrays.asList(manuf1, manuf2));
 
 		mockMvc.perform(post("/manufacturer/listAll.html"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("manufacturer/listManufacturers"));
-//				.andExpect(model().attribute("manufList", ));
+		// .andExpect(model().attribute("manufList", ));
 
+	}
+
+	@Test
+	public void testCreateManufacturer() throws Exception {
+		Manufacturer manuf1 = new Manufacturer();
+		manuf1.setId(1L);
+		manuf1.setName("Zama");
+		manuf1.setContactName("SomeName");
+		manuf1.setContactNumber("555-123");
+		
+		mockMvc.perform(post("/manufacturer/create.html").sessionAttr("manufacturer", manuf1))
+				//.andExpect(view().name("manufacturer/listManufacturers"))
+				.andExpect(status().isOk());
 	}
 }
