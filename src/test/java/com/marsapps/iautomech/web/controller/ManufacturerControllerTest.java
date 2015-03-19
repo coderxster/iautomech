@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 import org.mockito.InjectMocks;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,7 @@ public class ManufacturerControllerTest {
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+		mockService = Mockito.mock(ManufacturerService.class);
 	}
 
 	@Test
@@ -74,8 +76,8 @@ public class ManufacturerControllerTest {
 		manuf2.setContactName("SomeOtherName");
 		manuf2.setContactNumber("123-555");
 
-		// when(mockService.getAllManufacturers()).thenReturn(
-		// Arrays.asList(manuf1, manuf2));
+		when(mockService.getAllManufacturers()).thenReturn(
+				Arrays.asList(manuf1, manuf2));
 
 		mockMvc.perform(post("/manufacturer/listAll.html"))
 				.andExpect(status().isOk())
@@ -91,9 +93,11 @@ public class ManufacturerControllerTest {
 		manuf1.setName("Zama");
 		manuf1.setContactName("SomeName");
 		manuf1.setContactNumber("555-123");
-		
-		mockMvc.perform(post("/manufacturer/create.html").sessionAttr("manufacturer", manuf1))
-				//.andExpect(view().name("manufacturer/listManufacturers"))
+
+		mockMvc.perform(
+				post("/manufacturer/create.html").sessionAttr("manufacturer",
+						manuf1))
+		// .andExpect(view().name("manufacturer/listManufacturers"))
 				.andExpect(status().isOk());
 	}
 }

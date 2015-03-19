@@ -22,7 +22,9 @@
 		<div class="content">
 			Manufacturer<br /> Oops! An error was encountered.<br/><br/>
 			
-<%-- 			<c:out value="${pageContext.errorData.statusCode}"/> --%>
+			<%-- <c:out value="${pageContext.errorData.statusCode}"/> --%>
+			<c:out value="${exception}"/>
+			<c:out value="${exception.message}"/>
 
 		</div>
 

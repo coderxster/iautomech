@@ -3,12 +3,15 @@ package com.marsapps.iautomech.service;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.mockito.Mockito.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -35,6 +38,10 @@ public class ManufacturerServiceImplTest {
 
 	@Test
 	public void testGetAllManufacturers() {
+		ManufacturerService service = mock(ManufacturerService.class);
+		when(service.getAllManufacturers()).thenReturn(
+				Arrays.asList(new Manufacturer(), new Manufacturer()));
+
 		List<Manufacturer> list = service.getAllManufacturers();
 		assertNotNull(list);
 		assertTrue(list.size() > 0);
@@ -85,9 +92,9 @@ public class ManufacturerServiceImplTest {
 
 	@Test
 	public void testFindByIds() {
-		
+
 		List<Long> ids = new ArrayList<Long>();
-		
+
 		for (int i = 0; i < 5; i++) {
 			Manufacturer manuf1 = new Manufacturer();
 			manuf1.setName("Walbro-" + i);
@@ -96,14 +103,14 @@ public class ManufacturerServiceImplTest {
 
 			ids.add(service.addManufacturer(manuf1));
 		}
-		
+
 		List<Manufacturer> fetchedManufacturers = service.findByIds(ids);
-		
-		for(Manufacturer manuf : fetchedManufacturers) {
+
+		for (Manufacturer manuf : fetchedManufacturers) {
 			assertTrue(ids.contains(manuf.getId()));
 		}
 	}
-	
+
 	@Test
 	public void testFindManufacturer() {
 		Manufacturer manuf1 = new Manufacturer();
@@ -119,7 +126,7 @@ public class ManufacturerServiceImplTest {
 
 		Manufacturer manufTmp = service.findById(id1);
 		assertEquals(manuf1, manufTmp);
-		
+
 		System.err.println(id1);
 		System.err.println(id2);
 
@@ -127,7 +134,6 @@ public class ManufacturerServiceImplTest {
 		manufLike.setName("TmpW");
 		manufLike.setContactName("arcel");
 
-		
 		List<Manufacturer> list = service.findLike(manufLike);
 		assertEquals(2, list.size());
 	}
@@ -150,16 +156,18 @@ public class ManufacturerServiceImplTest {
 
 		int numRowsToShow = 5;
 		int pageNum = 3;
-		
-		List<Manufacturer> list = service.findLike(manufLike, numRowsToShow, pageNum);
+
+		List<Manufacturer> list = service.findLike(manufLike, numRowsToShow,
+				pageNum);
 
 		assertNotNull(list);
 		assertEquals(5, list.size());
-		
+
 		int counter = (numRowsToShow * pageNum) - numRowsToShow;
 		for (int i = 0; i < list.size(); i++, counter++) {
 			assertEquals("TestName-" + counter, list.get(i).getName());
-			assertEquals("TestContactName-" + counter, list.get(i).getContactName());
+			assertEquals("TestContactName-" + counter, list.get(i)
+					.getContactName());
 			assertEquals("555-" + counter, list.get(i).getContactNumber());
 		}
 

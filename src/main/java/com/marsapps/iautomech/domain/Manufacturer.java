@@ -5,42 +5,47 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
 @Entity
-@Table(name = "manufacturer")
-//@NamedQueries(value = { @NamedQuery(name = "findLike", query = "from Manufacturer where lower(name) like lower(:name) and ") })
+@Table(name = "manufacturer", uniqueConstraints = { @UniqueConstraint(name="UNIQUE_MANUF_CONSTRAINT", columnNames = { "name" }) })
+// @NamedQueries(value = { @NamedQuery(name = "findLike", query =
+// "from Manufacturer where lower(name) like lower(:name) and ") })
 public class Manufacturer {
 
 	public Manufacturer() {
 		super();
 	}
-	
+
 	public Manufacturer(String name, String contactName, String contactNumber) {
 		this.name = name;
 		this.contactName = contactName;
 		this.contactNumber = contactNumber;
 	}
-	
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "manufacturer_id")
 	private Long id;
 
-	//Do we really need a bi-directional relationship between part and manufacturer???
-	@OneToMany(cascade = CascadeType.ALL)
+	// Do we really need a bi-directional relationship between part and
+	// manufacturer???
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "manufacturer_id")
 	private Set<Part> parts;
 
-	@Column
+	@Column(unique = true)
 	private String name;
 
 	@Column(name = "contact_name")
