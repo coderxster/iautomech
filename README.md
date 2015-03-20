@@ -1,9 +1,8 @@
 # iautomech
-Application which manages automotive repairs, servicing, parts and manufacturers, etc.
+===========
+Application which manages automotive repairs, servicing, parts and manufacturers, produced reports, etc.
 
-++++++++++++++++++++++++++
-+ Contributions welcome! +
-++++++++++++++++++++++++++
+Contributions welcome! 
 
 Technology stack:
 
