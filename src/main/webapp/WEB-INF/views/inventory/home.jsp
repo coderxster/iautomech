@@ -22,11 +22,11 @@
 		</div>
 
 		<div class="content">
-		<h3>Parts</h3>
-		<br/>Welcome to the Parts section!<br />
-			<br />
-			<p>Here you will be able to do all sorts of Parts related
-				activities such as create, search, update and delete.</p>
+			<h3>Parts</h3>
+			<br />Welcome to the Inventory!<br /> <br />
+			<p>Here you will be able to do all sorts of inventory related
+				tasks such as manage stock, part and manufacturers, produce reports
+				and graphs, etc.</p>
 		</div>
 
 

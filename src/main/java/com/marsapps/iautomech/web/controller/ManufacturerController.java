@@ -25,7 +25,7 @@ import com.marsapps.iautomech.domain.Manufacturer;
 import com.marsapps.iautomech.service.ManufacturerService;
 
 @Controller
-@RequestMapping("/manufacturer")
+@RequestMapping("/inventory/manufacturer")
 @SessionAttributes("manufacturer")
 public class ManufacturerController extends
 		AbstractBaseController<Manufacturer> {
@@ -38,12 +38,12 @@ public class ManufacturerController extends
 		Manufacturer manuf = new Manufacturer();
 		model.put("manufacturer", manuf);
 
-		return "manufacturer/home";
+		return "inventory/manufacturer/home";
 	}
 
 	@RequestMapping(value = "/createForm.html", method = RequestMethod.GET)
 	public String showCreateForm(ModelMap model) {
-		return "manufacturer/createManufacturer";
+		return "inventory/manufacturer/createManufacturer";
 	}
 
 	@RequestMapping(value = "/create.html", method = RequestMethod.POST)
@@ -56,7 +56,7 @@ public class ManufacturerController extends
 		System.err.println(list);
 		model.put("manufacturerList", list);
 
-		return "manufacturer/listManufacturers";
+		return "inventory/manufacturer/listManufacturers";
 	}
 
 	@RequestMapping("/delete/{id}")
@@ -64,13 +64,13 @@ public class ManufacturerController extends
 		service.removeManufacturer(Long.parseLong(id));
 		List<Manufacturer> list = service.getAllManufacturers();
 		model.put("manufacturerList", list);
-		return "manufacturer/listManufacturers";
+		return "inventory/manufacturer/listManufacturers";
 	}
 
 	@RequestMapping(value = "/searchForm.html", method = RequestMethod.GET)
 	public String showSearchForm(ModelMap model) {
 		model.put("manufacturer", new Manufacturer());
-		return "manufacturer/searchManufacturer";
+		return "inventory/manufacturer/searchManufacturer";
 	}
 
 	@RequestMapping(value = "/search.html", method = RequestMethod.POST)
@@ -98,14 +98,14 @@ public class ManufacturerController extends
 		model.put("maxpage", ((long) count / rows) == 0 ? 1 : (long) count
 				/ rows);
 
-		return "manufacturer/searchManufacturer";
+		return "inventory/manufacturer/searchManufacturer";
 	}
 
 	@RequestMapping("/listAll.html")
 	public String listManufacturers(Model model, HttpSession session) {
 		List<Manufacturer> list = service.getAllManufacturers();
 		session.setAttribute("manufacturerList", list);
-		return "manufacturer/listManufacturers";
+		return "inventory/manufacturer/listManufacturers";
 	}
 
 	@RequestMapping("/doPaging.html")
@@ -137,7 +137,7 @@ public class ManufacturerController extends
 		model.put("maxpage", ((long) count / rows) == 0 ? 1 : (long) count
 				/ rows);
 
-		return "manufacturer/searchManufacturer";
+		return "inventory/manufacturer/searchManufacturer";
 	}
 
 	@RequestMapping("/delete.html")
@@ -151,7 +151,7 @@ public class ManufacturerController extends
 		List<Manufacturer> list = service.findByIds(idList);
 		session.setAttribute("manufacturersToDelete", list);
 
-		return "manufacturer/confirmDelete";
+		return "inventory/manufacturer/confirmDelete";
 	}
 
 	@RequestMapping("/deleteConfirmed.html")
@@ -169,7 +169,7 @@ public class ManufacturerController extends
 
 		model.put("message", "Manufacturers deleted successfully");
 
-		return "manufacturer/searchManufacturer";
+		return "inventory/manufacturer/searchManufacturer";
 	}
 
 	@ExceptionHandler(ConstraintViolationException.class)

@@ -62,14 +62,14 @@ public class PartControllerTest {
 
 	@Test
 	public void testShowHomePage() throws Exception {
-		mockMvc.perform(get("/part/home.html")).andExpect(
-				view().name("part/home"));
+		mockMvc.perform(get("/inventory/part/home.html")).andExpect(
+				view().name("inventory/part/home"));
 	}
 
 	@Test
 	public void testSearchPartPage() throws Exception {
-		mockMvc.perform(get("/part/searchForm.html")).andExpect(
-				view().name("part/searchPart"));
+		mockMvc.perform(get("/inventory/part/searchForm.html")).andExpect(
+				view().name("inventory/part/searchPart"));
 	}
 
 	@Test
@@ -92,10 +92,10 @@ public class PartControllerTest {
 
 		// 3. check paging attributes are correct
 		mockMvc.perform(
-				post("/part/search.html").param("rowsPerPage", "2")
+				post("/inventory/part/search.html").param("rowsPerPage", "2")
 						.param("manufacturer", manuf.getId().toString())
 						.param("name", "PartNa").param("modelNo", "abc"))
-				.andExpect(view().name("part/searchPart"))
+				.andExpect(view().name("inventory/part/searchPart"))
 				.andExpect(request().attribute("page", 1))
 				.andExpect(request().attribute("maxpage", 5L));
 	}
@@ -120,10 +120,10 @@ public class PartControllerTest {
 
 		// 3. check paging attributes are correct
 		mockMvc.perform(
-				post("/part/search.html").param("rowsPerPage", "5")
+				post("/inventory/part/search.html").param("rowsPerPage", "5")
 						.param("manufacturer", manuf.getId().toString())
 						.param("name", "PartNa").param("modelNo", "abc"))
-				.andExpect(view().name("part/searchPart"))
+				.andExpect(view().name("inventory/part/searchPart"))
 				.andExpect(request().attribute("page", 1))
 				.andExpect(request().attribute("maxpage", 3L));
 	}

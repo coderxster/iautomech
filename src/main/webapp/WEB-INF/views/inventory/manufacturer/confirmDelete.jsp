@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="pageHeading">
-		<c:import url="../header.jsp" />
+		<c:import url="../../header.jsp" />
 	</div>
 
 	<div class="menuAndContent">
@@ -72,7 +72,7 @@
 	</div>
 
 	<div class="footer">
-		<c:import url="../footer.jsp" />
+		<c:import url="../../footer.jsp" />
 	</div>
 </body>
 </html>

@@ -57,8 +57,8 @@ public class ManufacturerControllerTest {
 
 	@Test
 	public void testShowHome() throws Exception {
-		mockMvc.perform(get("/manufacturer/home.html")).andExpect(
-				view().name("manufacturer/home"));
+		mockMvc.perform(get("/inventory/manufacturer/home.html")).andExpect(
+				view().name("inventory/manufacturer/home"));
 	}
 
 	@Test
@@ -79,9 +79,9 @@ public class ManufacturerControllerTest {
 		when(mockService.getAllManufacturers()).thenReturn(
 				Arrays.asList(manuf1, manuf2));
 
-		mockMvc.perform(post("/manufacturer/listAll.html"))
+		mockMvc.perform(post("/inventory/manufacturer/listAll.html"))
 				.andExpect(status().isOk())
-				.andExpect(view().name("manufacturer/listManufacturers"));
+				.andExpect(view().name("inventory/manufacturer/listManufacturers"));
 		// .andExpect(model().attribute("manufList", ));
 
 	}
@@ -95,7 +95,7 @@ public class ManufacturerControllerTest {
 		manuf1.setContactNumber("555-123");
 
 		mockMvc.perform(
-				post("/manufacturer/create.html").sessionAttr("manufacturer",
+				post("/inventory/manufacturer/create.html").sessionAttr("manufacturer",
 						manuf1))
 		// .andExpect(view().name("manufacturer/listManufacturers"))
 				.andExpect(status().isOk());

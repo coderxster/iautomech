@@ -7,20 +7,13 @@
 	</tr>
 	<!-- the Parts and Manufacturers links should be under inventory, right? -->
 	<tr>
-		<td><a href="part/home.html">Parts</a></td>
-	</tr>
-	<tr>
-		<td><a href="manufacturer/home.html">Manufacturers</a></td>
-	</tr>
-	<!-- create the rest of the functional areas to these links (maintenance, work history, etc.) -->
-	<tr>
-		<td><a href="part/home.html">Maintenance</a></td>
-	</tr>
-	<tr>
-		<td><a href="manufacturer/home.html">Work History</a></td>
-	</tr>
-	<tr>
 		<td><a href="inventory/home.html">Inventory</a></td>
+	</tr>
+	<tr>
+		<td><a href="repairs/home.html">Service and Repairs</a></td>
+	</tr>	
+	<tr>
+		<td><a href="part/home.html">________________</a></td>
 	</tr>
 	<tr>
 		<td><a href="inventory/home.html">Reference guides</a></td>

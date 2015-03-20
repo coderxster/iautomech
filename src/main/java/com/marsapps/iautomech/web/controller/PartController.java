@@ -32,7 +32,7 @@ import com.marsapps.iautomech.service.PartService;
 import com.marsapps.iautomech.web.converter.ManufacturerPropertyEditor;
 
 @Controller
-@RequestMapping("/part")
+@RequestMapping("/inventory/part")
 @SessionAttributes("manufacturerList")
 public class PartController {
 
@@ -44,7 +44,7 @@ public class PartController {
 
 	@RequestMapping(value = { "/", "/home" })
 	public String showHomePage() {
-		return "part/home";
+		return "inventory/part/home";
 	}
 
 	@RequestMapping("searchForm.html")
@@ -52,12 +52,12 @@ public class PartController {
 		model.addAttribute("part", new Part());
 		model.addAttribute("manufacturerList",
 				manufService.getAllManufacturers());
-		return "part/searchPart";
+		return "inventory/part/searchPart";
 	}
 
 	@RequestMapping("/createForm.html")
 	public ModelAndView showCreatePartForm() {
-		ModelAndView mav = new ModelAndView("part/createPart");
+		ModelAndView mav = new ModelAndView("inventory/part/createPart");
 
 		Part part = new Part();
 		mav.addObject("part", part);
@@ -73,7 +73,7 @@ public class PartController {
 		if (result.hasErrors()) {
 			// if there are any validation errors, then don't proceed, just
 			// return to the view to render the validation errors
-			return "part/createPart";
+			return "inventory/part/createPart";
 		}
 
 		part.setModifiedDate(new Date());
@@ -85,7 +85,7 @@ public class PartController {
 		// provide a new Part object - alternatively clear all fields
 		model.addAttribute("part", new Part());
 
-		return "part/createPart";
+		return "inventory/part/createPart";
 	}
 
 	@RequestMapping("search.html")
@@ -129,7 +129,7 @@ public class PartController {
 				(((long) count / rows) == 0 ? 1 : (long) Math
 						.ceil((double) count / rows)));
 
-		return "part/searchPart";
+		return "inventory/part/searchPart";
 	}
 
 	@RequestMapping("/doPaging.html")
@@ -186,7 +186,7 @@ public class PartController {
 				(((long) count / rows) == 0 ? 1 : (long) Math
 						.ceil((double) count / rows)));
 
-		return "part/searchPart";
+		return "inventory/part/searchPart";
 	}
 
 	@InitBinder
