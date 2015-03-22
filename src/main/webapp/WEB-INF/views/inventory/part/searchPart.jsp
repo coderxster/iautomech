@@ -53,6 +53,21 @@
 			);
 		});		
 		
+		$('#name').keyup(function() {
+			$.ajax({
+				url:'http://localhost:8080/iautomech/rest/inventory/part/search/' + $('#name').val(),
+				type: "GET",
+				success: function(data){
+					$("#sku").val(data.id);
+					$("#partNo").val(data.name);
+					$("#modelNo").val(data.login);
+				},
+				error: function(){
+					alert('error');					
+				}
+			})
+		});
+		
 	});
 	
 

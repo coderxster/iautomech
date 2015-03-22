@@ -18,6 +18,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -189,6 +190,15 @@ public class PartController {
 		return "inventory/part/searchPart";
 	}
 
+	@ExceptionHandler
+	public ModelAndView handleException(Exception ex) {
+		ModelAndView model = new ModelAndView("error/error");
+		
+		model.addObject("exception", ex);
+		return model;
+	
+	}
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		System.err.println("++++++++++BINDER CALLED+++++++++++");

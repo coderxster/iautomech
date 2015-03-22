@@ -18,6 +18,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "manufacturer", uniqueConstraints = { @UniqueConstraint(name="UNIQUE_MANUF_CONSTRAINT", columnNames = { "name" }) })
 // @NamedQueries(value = { @NamedQuery(name = "findLike", query =
@@ -41,6 +43,7 @@ public class Manufacturer {
 
 	// Do we really need a bi-directional relationship between part and
 	// manufacturer???
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "manufacturer_id")
 	private Set<Part> parts;

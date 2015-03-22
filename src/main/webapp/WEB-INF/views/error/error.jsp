@@ -8,13 +8,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="StyleSheet" href="/iautomech/resources/css/styles.css"
 	type="text/css" />
-<title>iAutoMech!</title>
+<title>iAutoMech error!</title>
 </head>
 
 <body>
 	<div class="pageHeading">
-		<%-- 		<c:import url="../header.jsp" /> --%>
-		iAutoMech
+		<c:import url="../header.jsp" />
 	</div>
 
 	<div class="menuAndContent">
@@ -23,8 +22,8 @@
 			Manufacturer<br /> Oops! An error was encountered.<br/><br/>
 			
 			<%-- <c:out value="${pageContext.errorData.statusCode}"/> --%>
-			<c:out value="${exception}"/>
-			<c:out value="${exception.message}"/>
+			<c:out value="1: ${exception}"/>
+			<c:out value="2: ${exception.message}"/>
 
 		</div>
 

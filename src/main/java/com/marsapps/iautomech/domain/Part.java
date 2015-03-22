@@ -1,5 +1,6 @@
 package com.marsapps.iautomech.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,9 +17,17 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 @Entity
 @Table(name="part")
+//Added following annotation because was getting "No serializer found" error for these properties
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Part {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -26,6 +35,7 @@ public class Part {
 	private Long id;
 	
 	@NotNull
+//	@JsonIgnore
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="manufacturer_id")
 	private Manufacturer manufacturer;
