@@ -17,4 +17,6 @@ public interface PartService {
 	public List<Part> findPartLike(Part partLike, int numRowsToShow, int pageNum);
 	
 	public Long getCount(Part part);
+	
+	public void update(Part part);
 }

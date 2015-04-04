@@ -3,15 +3,11 @@
 
 <table>
 	<tr>
-		<td><a href="home.html">Home</a></td>
-	</tr>
-	<!-- the Parts and Manufacturers links should be under inventory, right? -->
-	<tr>
 		<td><a href="inventory/home.html">Inventory</a></td>
 	</tr>
 	<tr>
 		<td><a href="repairs/home.html">Service and Repairs</a></td>
-	</tr>	
+	</tr>
 	<tr>
 		<td><a href="part/home.html">________________</a></td>
 	</tr>

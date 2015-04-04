@@ -38,6 +38,10 @@ public class PartDAOImpl extends AbstractBaseDAO<Part> implements PartDAO {
 		return findPartLike(partLike, 0, 0);
 	}
 
+	public void update(Part part) {
+		sessionFactory.getCurrentSession().update(part);
+	}
+	
 	public List<Part> findPartLike(Part partLike, int numRowsToShow, int pageNum) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
 				Part.class);

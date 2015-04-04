@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -24,7 +26,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @Entity
 @Table(name="part")
 //Added following annotation because was getting "No serializer found" error for these properties
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","manufacturer"})
 public class Part {
 
 	private static final long serialVersionUID = 1L;
@@ -62,6 +64,7 @@ public class Part {
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name="modified_date")
+	@Temporal(TemporalType.DATE)
 	private Date modifiedDate;
 
 	public Long getId() {

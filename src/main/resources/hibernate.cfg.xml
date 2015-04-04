@@ -5,7 +5,7 @@
 		
 <hibernate-configuration>
 	<session-factory>
-	    <property name="hbm2ddl.auto">create</property>
+	    <property name="hbm2ddl.auto">update</property>
 		<mapping class="com.marsapps.iautomech.domain.Manufacturer"></mapping>
 	</session-factory>
 	

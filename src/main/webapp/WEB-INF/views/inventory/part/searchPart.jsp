@@ -25,6 +25,7 @@
 		});
 	});
 	$(document).ready(function() {
+
 		$('#partDataTable tbody tr').click(function() {
 			$('#id').val($(this).children('#id').text());
 			$('#name').val($(this).children('#name').text());
@@ -36,7 +37,9 @@
 			$("select #manufacturer option").each(function() { 
 				this.val = (this.text == $('#partDataTable tbody tr').children('#manufacturer').text()); 
 				}
-			);			
+			);		
+			$("#update").removeAttr('disabled');
+			$("#id").attr("disabled","disabled");
 		});
 		
 		$("#clear").click(function () {
@@ -51,8 +54,9 @@
 				this.selected = '--Select a Manufacturer --'; 
 				}
 			);
+			$("#update").attr('disabled','disabled');
 		});		
-		
+		//remove hard coded url
 		$('#name').keyup(function() {
 			$.ajax({
 				url:'http://localhost:8080/iautomech/rest/inventory/part/search/' + $('#name').val(),
@@ -66,6 +70,28 @@
 					alert('error');					
 				}
 			})
+		});
+		
+		$("#update").click(function() {
+			var sku = $("#sku").val()
+			var modelNo = $("#modelNo").val()
+			var partNo = $("#patrNo").val()
+			var name = $("#name").val()
+			var description = $("#description").val()
+			var manufacturer = $("#manufacturer").val()
+			$.ajax({
+			    type: 'POST',					//there must be a better way than sending the part and manufacturer id!!!
+			    url: '/iautomech/rest/inventory/part/update/' + $('#id').val() + '/' + $("#manufacturer").val(),
+			    data: JSON.stringify({sku:sku, modelNo:modelNo, partNo:partNo, name:name, description:description}), // or JSON.stringify ({name: 'jonas'}),
+			    success: function() { 
+			    	alert('Part updated successfully!');
+			    },
+			    error: function(){
+					alert("Could not update Part");					
+				},
+			    contentType: "application/json",
+// 			    dataType: 'json' <-- is this the return type? because i was getting an error when this was enabled
+			});		
 		});
 		
 	});
@@ -157,6 +183,7 @@
 					</tr>
 					<tr>
 						<td><input type="submit" value="Search" /></td>
+						<td><input type="button" value="Update" id="update" disabled="disabled"/></td>
 						<td><input id="clear" type="button" value="Clear" /></td>
 					</tr>
 				</table>

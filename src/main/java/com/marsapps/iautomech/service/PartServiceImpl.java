@@ -20,6 +20,11 @@ public class PartServiceImpl implements PartService {
 	public Part findById(Long id) {
 		return partDAO.findById(id);
 	}
+	
+	@Transactional
+	public void update(Part part) {
+		partDAO.update(part);
+	}
 
 	@Transactional
 	public Long addPart(Part part) {
