@@ -22,9 +22,23 @@
 		</div>
 
 		<div class="content">
-		<h3>Parts</h3>
-		<br/>Welcome to the Parts section!<br />
-			<br />
+			<table width="100%">
+				<tr>
+					<td align="left">
+						<h3>Parts</h3>
+					</td>
+					<td align="right">
+					<form:form method="POST"
+							action="/iautomech/inventory/part/search.html" commandName="part">
+							<form:label for="partNo" path="partNo">Part No.</form:label>
+							<form:input id="partNo" path="partNo" />
+							<input type="hidden" name="rowsPerPage" value="10" />
+							<form:button value="Go">Go</form:button>
+						</form:form>
+					</td>
+				</tr>
+			</table>
+			<br />Welcome to the Parts section!<br /> <br />
 			<p>Here you will be able to do all sorts of Parts related
 				activities such as create, search, update and delete.</p>
 		</div>

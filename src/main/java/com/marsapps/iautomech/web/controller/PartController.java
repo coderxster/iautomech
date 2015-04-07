@@ -44,7 +44,8 @@ public class PartController {
 	private ManufacturerService manufService;
 
 	@RequestMapping(value = { "/", "/home" })
-	public String showHomePage() {
+	public String showHomePage(Model model) {
+		model.addAttribute("part", new Part());
 		return "inventory/part/home";
 	}
 
@@ -93,7 +94,7 @@ public class PartController {
 	public String search(@ModelAttribute("part") Part part,
 			@RequestParam("rowsPerPage") String rowsPerPage, ModelMap model,
 			BindingResult result, HttpSession session) {
-
+System.err.println("part no: " + part.getPartNo());
 		int rows = Integer.parseInt(rowsPerPage);
 		session.setAttribute("rowsPerPage", rows);
 
@@ -105,7 +106,10 @@ public class PartController {
 		StringBuilder query = new StringBuilder();
 		query.append("name=" + ((part.getName() == null) ? "" : part.getName()));
 		query.append("&sku=" + ((part.getSku() == null) ? "" : part.getSku()));
-		query.append("&manufacturer=" + part.getManufacturer().getId());
+		
+		if(part.getManufacturer() != null)
+			query.append("&manufacturer=" + part.getManufacturer().getId());
+		
 		query.append("&modelno="
 				+ ((part.getModelNo() == null) ? "" : part.getModelNo()));
 		query.append("&partno="

@@ -22,7 +22,7 @@
 		</div>
 
 		<div class="content">
-			<h3>Parts</h3>
+			<h3>Inventory</h3>
 			<br />Welcome to the Inventory!<br /> <br />
 			<p>Here you will be able to do all sorts of inventory related
 				tasks such as manage stock, part and manufacturers, produce reports

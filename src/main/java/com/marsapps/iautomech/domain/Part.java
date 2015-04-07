@@ -25,8 +25,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 @Table(name="part")
-//Added following annotation because was getting "No serializer found" error for these properties
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","manufacturer"})
+//Added following annotation because was getting "No serializer found" error for these properties (not manufacturer)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Part {
 
 	private static final long serialVersionUID = 1L;
@@ -37,7 +37,7 @@ public class Part {
 	private Long id;
 	
 	@NotNull
-//	@JsonIgnore
+	@JsonIgnore
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="manufacturer_id")
 	private Manufacturer manufacturer;

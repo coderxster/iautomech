@@ -75,14 +75,22 @@
 		$("#update").click(function() {
 			var sku = $("#sku").val()
 			var modelNo = $("#modelNo").val()
-			var partNo = $("#patrNo").val()
+			var partNo = $("#partNo").val()
+			var modifiedDate = $("#modifiedDate").val()
+			var quantity = $("#quantity").val()
 			var name = $("#name").val()
 			var description = $("#description").val()
 			var manufacturer = $("#manufacturer").val()
 			$.ajax({
 			    type: 'POST',					//there must be a better way than sending the part and manufacturer id!!!
 			    url: '/iautomech/rest/inventory/part/update/' + $('#id').val() + '/' + $("#manufacturer").val(),
-			    data: JSON.stringify({sku:sku, modelNo:modelNo, partNo:partNo, name:name, description:description}), // or JSON.stringify ({name: 'jonas'}),
+			    data: JSON.stringify({sku:sku, 
+			    			modelNo:modelNo, 
+			    			partNo:partNo, 
+			    			name:name, 
+			    			modifiedDate:modifiedDate, 
+			    			quantity:quantity, 
+			    			description:description}),
 			    success: function() { 
 			    	alert('Part updated successfully!');
 			    },

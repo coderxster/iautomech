@@ -103,8 +103,8 @@ public class Manufacturer {
 			Manufacturer manuf = (Manufacturer) obj;
 			System.err.println(manuf);
 			System.err.println(this);
-			if (manuf.getId().equals(this.getId())
-					&& manuf.getName().equals(this.getName())) {
+			//we're not using id to check equality
+			if (manuf.getName().equals(this.getName())) {
 				System.err.println("Objects ARE equal....");
 				return true;
 			}
