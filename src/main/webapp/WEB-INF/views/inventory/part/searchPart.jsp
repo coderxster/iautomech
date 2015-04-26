@@ -34,8 +34,8 @@
 			$('#quantity').val($(this).children('#quantity').text());
 			$('#partNo').val($(this).children('#partNo').text());
 			$('#modelNo').val($(this).children('#modelNo').text());
-			$("select #manufacturer option").each(function() { 
-				this.val = (this.text == $('#partDataTable tbody tr').children('#manufacturer').text()); 
+			$("select#manufacturer option").each(function() { 
+				this.selected = (this.text == $('#partDataTable tbody tr').children('#manufacturer').text()); 
 				}
 			);		
 			$("#update").removeAttr('disabled');
@@ -50,8 +50,8 @@
 			$('#quantity').val('');
 			$('#partNo').val('');
 			$('#modelNo').val('');
-			$("select #manufacturer option").each(function() { 
-				this.selected = '--Select a Manufacturer --'; 
+			$("select#manufacturer option").each(function() {
+				this.selected = (this.text == "-- Select a Manufacturer --"); 
 				}
 			);
 			$("#update").attr('disabled','disabled');
