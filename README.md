@@ -7,9 +7,9 @@ Contributions welcome!
 Technology stack:
 
 jQuery,</br>
-Spring / Spring MVC,
-jax-ws and jax-rs (to be integrated),
-Hibernate,
-Mysql
+Spring / Spring MVC,</br>
+jax-ws and jax-rs (to be integrated soon),</br>
+Hibernate,</br>
+Mysql</br>
 
 Note: the application is currently going through some refactoring
