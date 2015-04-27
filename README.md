@@ -1,12 +1,12 @@
 # iautomech
 ===========
-Application which manages automotive repairs, servicing, parts and manufacturers, produced reports, etc.
+Application which manages automotive repairs, servicing, parts and manufacturers, produces reports, etc.
 
 Contributions welcome! 
 
 Technology stack:
 
-jQuery,
+jQuery,</br>
 Spring / Spring MVC,
 jax-ws and jax-rs (to be integrated),
 Hibernate,
