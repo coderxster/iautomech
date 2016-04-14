@@ -4,7 +4,7 @@ Application which manages automotive repairs, servicing, parts and manufacturers
 
 Contributions welcome! 
 
-### Technology stack:
+#### Technology stack:
 
 * JSP / HTML
 * jQuery / JavaScript
@@ -13,4 +13,4 @@ Contributions welcome!
 * Hibernate
 * Mysql
 
-Note: the application will be going through is some refactoring / changes
+Note: the application will be going through some refactoring / changes
